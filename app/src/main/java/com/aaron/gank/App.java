@@ -8,6 +8,7 @@ import android.content.Context;
  * Application
  */
 public class App extends Application {
+
     public static Context sContext;
 
     @Override
