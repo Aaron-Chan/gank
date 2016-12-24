@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">干货</string>
+
+    <string name="navigation_newest">主页</string>
+    <string name="navigation_girl">妹纸</string>
+    <string name="navigation_category">分类</string>
+    <string name="navigation_header">导航头像</string>
+
+    <string name="navigation_about">关于</string>
+
+
 </resources>

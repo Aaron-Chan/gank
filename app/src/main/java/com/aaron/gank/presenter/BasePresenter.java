@@ -6,7 +6,7 @@ import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by Aaron on 2016/12/23.
- * Presenter基类
+ * base class of Presenter
  */
 
 public abstract class BasePresenter<V extends BaseView> {
