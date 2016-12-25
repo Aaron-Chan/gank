@@ -1,5 +1,7 @@
 package com.aaron.gank.presenter;
 
+import android.support.annotation.NonNull;
+
 import com.aaron.gank.view.BaseView;
 
 import rx.subscriptions.CompositeSubscription;
@@ -14,14 +16,11 @@ public abstract class BasePresenter<V extends BaseView> {
     protected CompositeSubscription mCompositeSubscription;
     protected V mView;
 
-    public BasePresenter(V view) {
+    public BasePresenter(@NonNull V view) {
         mView = view;
         mCompositeSubscription = new CompositeSubscription();
     }
 
-    public void subscribe() {
-
-    }
 
     public void unsubscribe() {
         mCompositeSubscription.unsubscribe();

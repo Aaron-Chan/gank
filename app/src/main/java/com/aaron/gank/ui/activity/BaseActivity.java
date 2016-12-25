@@ -28,11 +28,17 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        init(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
         initToolbar();
         initViews();
+        initData();
     }
+
+    protected abstract void init(Bundle savedInstanceState);
+
+    protected abstract void initData();
 
     protected abstract void initViews();
 
