@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.aaron.gank.R;
 import com.aaron.gank.data.entity.GankEntity;
+import com.aaron.gank.presenter.DailyPresenter;
 import com.aaron.gank.view.DailyView;
 
 import java.util.List;
@@ -16,9 +17,12 @@ import java.util.List;
 public class DailyFragment extends BaseFragment implements DailyView {
 
 
+    private DailyPresenter mDailyPresenter;
+
     @Override
     protected void initData() {
-
+        mDailyPresenter = new DailyPresenter(this);
+        mDailyPresenter.getDailyData();
     }
 
     @Override
