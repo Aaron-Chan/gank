@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import com.aaron.gank.data.DailyData;
 import com.aaron.gank.model.IDailyDataModel;
 import com.aaron.gank.model.impl.DailyDataModel;
+import com.aaron.gank.utils.RxUtils;
 import com.aaron.gank.view.DailyView;
 
 import java.util.Date;
@@ -29,9 +30,8 @@ public class DailyPresenter extends BasePresenter<DailyView> {
 
 
     public void getDailyData() {
-        Subscription subscription = mDailyDataModel.getDailyData(new Date())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+        mCompositeSubscription.add(mDailyDataModel.getDailyData(new Date())
+                .compose(RxUtils.<DailyData>getTransformer())
                 .subscribe(new Subscriber<DailyData>() {
                     @Override
                     public void onCompleted() {
@@ -50,7 +50,6 @@ public class DailyPresenter extends BasePresenter<DailyView> {
 
                         }
                     }
-                });
-        mCompositeSubscription.add(subscription);
+                }));
     }
 }
