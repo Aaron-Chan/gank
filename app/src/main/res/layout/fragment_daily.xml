@@ -3,9 +3,10 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
+
     <TextView
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:text="萨达大神大神大神"
-        android:layout_height="match_parent"/>
+        android:text="萨达大神大神大神"/>
 </LinearLayout>
