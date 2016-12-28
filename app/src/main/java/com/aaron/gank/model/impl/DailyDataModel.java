@@ -2,11 +2,9 @@ package com.aaron.gank.model.impl;
 
 import com.aaron.gank.data.DailyData;
 import com.aaron.gank.model.IDailyDataModel;
-import com.aaron.gank.repository.GankService;
-import com.aaron.gank.repository.GankServiceFactory;
 
-import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import rx.Observable;
 
@@ -28,10 +26,12 @@ public class DailyDataModel implements IDailyDataModel {
     }
 
     @Override
-    public Observable<DailyData> getDailyData(Date date) {
-        GankService gankService = GankServiceFactory.getInstance().getGankService();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        return gankService.getDailyData(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH));
+    public Observable<List<DailyData>> getDailyData(Date date) {
+        return null;
+//        GankService gankService = GankServiceFactory.getInstance().getGankService();
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTime(date);
+//
+//         gankService.getDailyData(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH));
     }
 }

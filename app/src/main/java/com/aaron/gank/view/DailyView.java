@@ -2,7 +2,7 @@ package com.aaron.gank.view;
 
 import android.support.annotation.NonNull;
 
-import com.aaron.gank.data.entity.GankEntity;
+import com.aaron.gank.data.DailyData;
 
 import java.util.List;
 
@@ -12,6 +12,6 @@ import java.util.List;
 
 public interface DailyView extends BaseView {
 
-    void showDaily(@NonNull List<GankEntity> dailyList);
+    void showDaily(@NonNull List<DailyData> dailyList);
 
 }
