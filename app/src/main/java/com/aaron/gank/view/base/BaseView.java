@@ -1,4 +1,4 @@
-package com.aaron.gank.view;
+package com.aaron.gank.view.base;
 
 /**
  * Created by Aaron on 2016/12/23.
@@ -6,5 +6,7 @@ package com.aaron.gank.view;
  */
 
 public interface BaseView {
+
+    void showError(String errorMsg);
 
 }
