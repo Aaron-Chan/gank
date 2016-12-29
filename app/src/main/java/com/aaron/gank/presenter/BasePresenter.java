@@ -2,7 +2,7 @@ package com.aaron.gank.presenter;
 
 import android.support.annotation.NonNull;
 
-import com.aaron.gank.view.BaseView;
+import com.aaron.gank.view.base.BaseView;
 
 import rx.subscriptions.CompositeSubscription;
 

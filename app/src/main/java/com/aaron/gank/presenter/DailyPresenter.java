@@ -5,15 +5,12 @@ import android.support.annotation.NonNull;
 import com.aaron.gank.data.DailyData;
 import com.aaron.gank.model.IDailyDataModel;
 import com.aaron.gank.model.impl.DailyDataModel;
+import com.aaron.gank.rx.BaseSubscriber;
 import com.aaron.gank.utils.RxUtils;
 import com.aaron.gank.view.DailyView;
 
 import java.util.Date;
-
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import java.util.List;
 
 /**
  * Created by Aaron on 2016/12/25.
@@ -28,27 +25,20 @@ public class DailyPresenter extends BasePresenter<DailyView> {
         mDailyDataModel = DailyDataModel.getInstance();
     }
 
-
     public void getDailyData() {
         mCompositeSubscription.add(mDailyDataModel.getDailyData(new Date())
-                .compose(RxUtils.<DailyData>getTransformer())
-                .subscribe(new Subscriber<DailyData>() {
+                .compose(RxUtils.<List<DailyData>>getTransformer())
+                .subscribe(new BaseSubscriber<List<DailyData>>() {
                     @Override
-                    public void onCompleted() {
-
+                    public void onSuccess(List<DailyData> dailyDatas) {
+                        mView.hideLoading();
+                        mView.showDaily(dailyDatas);
                     }
 
                     @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(DailyData dailyData) {
-                        if (dailyData.isError()) {
-                        } else {
-
-                        }
+                    public void onFailed(Throwable e) {
+                        mView.hideLoading();
+                        mView.showError(e.toString());
                     }
                 }));
     }
