@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
     defaultConfig {
-        applicationId "com.aaron.gank"
-        minSdkVersion 10
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -25,39 +25,43 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile project(":library")
 
-    compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
 
-
-    //butterknife
-    compile 'com.jakewharton:butterknife:8.4.0'
-    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+//    //butterknife
+//    compile rootProject.ext.dependencies["butterknife"]
+//    annotationProcessor  'com.jakewharton:butterknife-compiler:8.4.0'
 
     //retrofit
-    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
+    compile rootProject.ext.dependencies["retrofit"]
+    compile rootProject.ext.dependencies["retrofit-covert-gson"]
+    compile rootProject.ext.dependencies["retrofit-rxjava"]
 
     //gson
-    compile 'com.google.code.gson:gson:2.4'
+    compile rootProject.ext.dependencies["gson"]
 
     //兼容包
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:support-v4:25.1.0'
-    compile 'com.android.support:design:25.1.0'
-    compile 'com.android.support:cardview-v7:25.1.0'
+    //compile rootProject.ext.dependencies["appcompat-v7"]
+    compile rootProject.ext.dependencies["support-v4"]
+ //   compile rootProject.ext.dependencies["design"]
+    compile rootProject.ext.dependencies["cardview"]
 
     // google扩展库
-    compile "com.google.guava:guava:18.0"
+    compile rootProject.ext.dependencies["guava"]
 
     //rxjava
-    compile 'io.reactivex:rxjava:1.1.0'
-    compile 'io.reactivex:rxandroid:1.1.0'
+  //  compile rootProject.ext.dependencies["rxjava"]
+  //  compile rootProject.ext.dependencies["rxandroid"]
 
     //logger
-    compile 'com.orhanobut:logger:1.15'
+   // compile rootProject.ext.dependencies["logger"]
 
     //图片框架
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile rootProject.ext.dependencies["glide"]
+
+//    compile(rootProject.ext.dependencies["multitype"], {
+//        exclude group: 'com.android.support'
+//    })
+
 }

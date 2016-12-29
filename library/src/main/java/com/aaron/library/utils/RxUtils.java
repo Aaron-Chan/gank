@@ -1,4 +1,4 @@
-package com.aaron.gank.utils;
+package com.aaron.library.utils;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;

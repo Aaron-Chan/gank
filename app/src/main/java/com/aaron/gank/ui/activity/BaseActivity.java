@@ -7,8 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.aaron.gank.R;
-import com.aaron.gank.presenter.BasePresenter;
-import com.aaron.gank.view.base.BaseView;
+import com.aaron.library.presenter.BasePresenter;
+import com.aaron.library.view.BaseView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

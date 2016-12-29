@@ -3,6 +3,7 @@ package com.aaron.gank;
 import android.app.Application;
 import android.content.Context;
 
+import com.aaron.library.utils.ToastUtils;
 import com.orhanobut.logger.Logger;
 
 /**
@@ -19,6 +20,7 @@ public class App extends Application {
         sContext = this;
 
         Logger.init("Gank");
+        ToastUtils.init(sContext);
     }
 
 }

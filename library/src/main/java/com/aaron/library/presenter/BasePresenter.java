@@ -1,8 +1,8 @@
-package com.aaron.gank.presenter;
+package com.aaron.library.presenter;
 
 import android.support.annotation.NonNull;
 
-import com.aaron.gank.view.base.BaseView;
+import com.aaron.library.view.BaseView;
 
 import rx.subscriptions.CompositeSubscription;
 

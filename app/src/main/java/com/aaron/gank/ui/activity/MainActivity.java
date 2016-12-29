@@ -32,6 +32,7 @@ public class MainActivity extends BaseActivity<MainPresenter> {
     NavigationView mNavigationView;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
+
     private FragmentManager mFragmentManager;
     private Fragment mCurrentFragment;
     private Map<String, Fragment> mFragmentMap = new HashMap<>();
@@ -45,6 +46,7 @@ public class MainActivity extends BaseActivity<MainPresenter> {
     @Override
     protected void init(Bundle savedInstanceState) {
         mFragmentManager = getSupportFragmentManager();
+
         mCurrentFragment = mFragmentManager.findFragmentById(R.id.fl_content);
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
         if (mCurrentFragment == null) {
@@ -140,5 +142,10 @@ public class MainActivity extends BaseActivity<MainPresenter> {
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    public void showError(String errorMsg) {
+
     }
 }

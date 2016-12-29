@@ -1,49 +1,41 @@
 package com.aaron.gank.ui.fragment;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 
-import com.aaron.gank.R;
-import com.aaron.gank.data.DailyData;
 import com.aaron.gank.presenter.DailyPresenter;
 import com.aaron.gank.view.DailyView;
+import com.aaron.library.fragment.BaseListFragment;
 
-import java.util.List;
-
-import butterknife.BindView;
+import me.drakeet.multitype.MultiTypeAdapter;
 
 /**
  * Created by Aaron on 2016/12/25.
  * 每日干货 Fragment
  */
 
-public class DailyFragment extends BaseFragment implements DailyView {
+public class DailyFragment extends BaseListFragment implements DailyView {
 
-
-    @BindView(R.id.rv_daily)
-    RecyclerView mRvDaily;
     private DailyPresenter mDailyPresenter;
 
     @Override
     protected void initData() {
-        mDailyPresenter = new DailyPresenter(this);
-        mDailyPresenter.getDailyData();
+        mDailyPresenter = new DailyPresenter(this, mItems);
+        mDailyPresenter.onRefresh();
     }
 
     @Override
-    protected void initViews() {
-
+    protected void onLoadMore() {
+        mDailyPresenter.onLoadMore();
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_daily;
+    protected void onRefresh() {
+        mDailyPresenter.onRefresh();
     }
 
-
     @Override
-    public void showDaily(@NonNull List<DailyData> dailyList) {
-
+    public void onRetry() {
+        mDailyPresenter.onRefresh();
     }
 
     @Override
@@ -52,12 +44,13 @@ public class DailyFragment extends BaseFragment implements DailyView {
     }
 
     @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
+    protected MultiTypeAdapter getAdapter() {
+        return new MultiTypeAdapter(mItems){
+            @NonNull
+            @Override
+            public Class onFlattenClass(@NonNull Object item) {
+                return super.onFlattenClass(item);
+            }
+        };
     }
 }

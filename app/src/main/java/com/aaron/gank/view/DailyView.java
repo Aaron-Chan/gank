@@ -1,19 +1,11 @@
 package com.aaron.gank.view;
 
-import android.support.annotation.NonNull;
-
-import com.aaron.gank.data.DailyData;
-import com.aaron.gank.view.base.BaseView;
-import com.aaron.gank.view.base.LoadingView;
-
-import java.util.List;
+import com.aaron.library.view.IListView;
 
 /**
  * Created by Aaron on 2016/12/25.
  */
 
-public interface DailyView extends BaseView, LoadingView {
-
-    void showDaily(@NonNull List<DailyData> dailyList);
+public interface DailyView extends IListView {
 
 }

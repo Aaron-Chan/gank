@@ -1,6 +1,7 @@
 package com.aaron.gank.rx;
 
 import com.aaron.gank.data.Response;
+import com.aaron.library.rx.BaseSubscriber;
 
 /**
  * Created by AaronChan on 2016/12/28.

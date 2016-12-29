@@ -1,6 +1,6 @@
 package com.aaron.gank.view;
 
-import com.aaron.gank.view.base.BaseView;
+import com.aaron.library.view.BaseView;
 
 /**
  * Created by Aaron on 2016/12/24.

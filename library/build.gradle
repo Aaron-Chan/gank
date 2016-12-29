@@ -1,14 +1,13 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'com.jakewharton.butterknife'
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
-
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
     defaultConfig {
-        minSdkVersion 10
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
     }
     buildTypes {
         release {
@@ -21,5 +20,17 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile rootProject.ext.dependencies["appcompat-v7"]
+
+    compile rootProject.ext.dependencies["rxjava"]
+    compile rootProject.ext.dependencies["rxandroid"]
+    compile rootProject.ext.dependencies["design"]
+    compile rootProject.ext.dependencies["logger"]
+
+    compile rootProject.ext.dependencies["butterknife"]
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+
+    compile(rootProject.ext.dependencies["multitype"], {
+        exclude group: 'com.android.support'
+    })
 }
