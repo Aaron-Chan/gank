@@ -32,7 +32,7 @@ public class DailyPresenter extends ListPresenter<DailyView> {
                 .compose(RxUtils.<List<DailyData>>getTransformer())
                 .subscribe(new BaseSubscriber<List<DailyData>>() {
                     @Override
-                    public void onSuccess(List<DailyData> dailyDatas) {
+                    public void onSuccess(@NonNull List<DailyData> dailyDatas) {
                         onDataObtained(pageIndex, dailyDatas);
                     }
 

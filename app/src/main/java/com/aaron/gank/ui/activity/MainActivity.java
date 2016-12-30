@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.aaron.gank.R;
-import com.aaron.gank.presenter.MainPresenter;
 import com.aaron.gank.ui.fragment.DailyFragment;
 
 import java.util.HashMap;
@@ -22,7 +21,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity<MainPresenter> {
+public class MainActivity extends BaseActivity {
 
     @BindView(R.id.fl_content)
     FrameLayout mFlContent;

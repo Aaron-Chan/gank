@@ -18,6 +18,7 @@ public abstract class ListPresenter<V extends IListView> extends BasePresenter<V
 
     public ListPresenter(@NonNull V view, @NonNull List items) {
         super(view);
+        // 跟IListView 共同持有List的引用
         mItems = items;
     }
 

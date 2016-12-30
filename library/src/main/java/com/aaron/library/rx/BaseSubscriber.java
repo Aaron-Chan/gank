@@ -1,5 +1,7 @@
 package com.aaron.library.rx;
 
+import android.support.annotation.NonNull;
+
 import com.orhanobut.logger.Logger;
 
 import rx.Subscriber;
@@ -28,7 +30,7 @@ public abstract class BaseSubscriber<T> extends Subscriber<T> {
         onSuccess(t);
     }
 
-    public abstract void onSuccess(T t);
+    public abstract void onSuccess(@NonNull T t);
 
     public abstract void onFailed(Throwable e);
 }

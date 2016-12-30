@@ -27,8 +27,6 @@ dependencies {
     })
     compile project(":library")
 
-    testCompile 'junit:junit:4.12'
-
 //    //butterknife
 //    compile rootProject.ext.dependencies["butterknife"]
 //    annotationProcessor  'com.jakewharton:butterknife-compiler:8.4.0'
@@ -44,18 +42,18 @@ dependencies {
     //兼容包
     //compile rootProject.ext.dependencies["appcompat-v7"]
     compile rootProject.ext.dependencies["support-v4"]
- //   compile rootProject.ext.dependencies["design"]
+    //   compile rootProject.ext.dependencies["design"]
     compile rootProject.ext.dependencies["cardview"]
 
     // google扩展库
     compile rootProject.ext.dependencies["guava"]
 
     //rxjava
-  //  compile rootProject.ext.dependencies["rxjava"]
-  //  compile rootProject.ext.dependencies["rxandroid"]
+    //  compile rootProject.ext.dependencies["rxjava"]
+    //  compile rootProject.ext.dependencies["rxandroid"]
 
     //logger
-   // compile rootProject.ext.dependencies["logger"]
+    // compile rootProject.ext.dependencies["logger"]
 
     //图片框架
     compile rootProject.ext.dependencies["glide"]
@@ -64,4 +62,6 @@ dependencies {
 //        exclude group: 'com.android.support'
 //    })
 
+    compile 'com.android.support:support-v4:25.1.0'
+    testCompile 'junit:junit:4.12'
 }
