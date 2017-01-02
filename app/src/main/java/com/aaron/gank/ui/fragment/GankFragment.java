@@ -5,12 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.aaron.gank.data.entity.GankEntity;
 import com.aaron.gank.presenter.GankPresenter;
 import com.aaron.gank.view.GankView;
 import com.aaron.library.fragment.BaseListFragment;
-
-import java.util.List;
 
 /**
  *
@@ -64,8 +61,5 @@ public class GankFragment extends BaseListFragment implements GankView {
 
     }
 
-    @Override
-    public void showGankHuo(@NonNull List<GankEntity> gankEntityList) {
 
-    }
 }

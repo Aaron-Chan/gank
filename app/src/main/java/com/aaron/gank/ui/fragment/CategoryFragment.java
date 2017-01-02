@@ -1,7 +1,7 @@
 package com.aaron.gank.ui.fragment;
 
 
-import android.support.annotation.Nullable;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
@@ -28,7 +28,7 @@ public class CategoryFragment extends BaseFragment implements CategoryView {
 
     @Override
     protected void initData() {
-        CategoryPresenter categoryPresenter = new CategoryPresenter();
+        CategoryPresenter categoryPresenter = new CategoryPresenter(this);
         categoryPresenter.getCategoriesNames();
     }
 
@@ -45,7 +45,7 @@ public class CategoryFragment extends BaseFragment implements CategoryView {
     }
 
     @Override
-    public void showCategories(@Nullable List<String> names) {
+    public void showCategories(@NonNull List<String> names) {
         mGankPagerAdapter.setTitles(names);
     }
 
