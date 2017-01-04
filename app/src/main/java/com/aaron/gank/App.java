@@ -21,6 +21,7 @@ public class App extends Application {
 
         Logger.init("Gank");
         ToastUtils.init(sContext);
+        MultiypeItemProvider.register();
     }
 
 }
