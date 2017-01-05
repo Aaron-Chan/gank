@@ -28,8 +28,8 @@ dependencies {
     compile project(":library")
 
 //    //butterknife
-//    compile rootProject.ext.dependencies["butterknife"]
-//    annotationProcessor  'com.jakewharton:butterknife-compiler:8.4.0'
+    compile rootProject.ext.dependencies["butterknife"]
+    annotationProcessor  'com.jakewharton:butterknife-compiler:8.4.0'
 
     //retrofit
     compile rootProject.ext.dependencies["retrofit"]
