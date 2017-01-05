@@ -19,6 +19,7 @@ import rx.Observable;
 public interface GankService {
 
     String BASE_URL = "http://www.gank.io/api/";
+    String PUBLISH_DATE_FORMAT = "yyyy-MM-dd";
 
     /**
      * 获取某天的干货
@@ -40,6 +41,14 @@ public interface GankService {
      */
     @GET("random/data/{category}/{count}")
     Observable<Response<List<GankEntity>>> getRandomData(@Path("category") String category, @Path("count") int count);
+
+    /**
+     * 获取发过干货日期
+     *
+     * @return 2017-01-05 形式日期
+     */
+    @GET("day/history")
+    Observable<Response<List<String>>> getPublishDates();
 
     /**
      * 获取某个目录的干货

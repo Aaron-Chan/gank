@@ -33,6 +33,8 @@ public class DailyPresenter extends ListPresenter<DailyView> {
                 .subscribe(new BaseSubscriber<List<DailyData>>() {
                     @Override
                     public void onSuccess(@NonNull List<DailyData> dailyDatas) {
+
+
                         onDataObtained(pageIndex, dailyDatas);
                     }
 

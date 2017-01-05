@@ -29,7 +29,7 @@ public class GankPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return GankFragment.newInstance();
+        return GankFragment.newInstance(mTitles.get(position));
     }
 
     @Override
