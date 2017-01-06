@@ -7,6 +7,7 @@ package com.aaron.gank.constans;
 public class Constants {
 
     public static String PUBLISH_DATE_FORMAT = "yyyy-MM-dd";
+    public static String CATEGORY_ALL= "all";
     public static String CATEGORY_ANDROID = "Android";
     public static String CATEGORY_IOS = "iOS";
     public static String CATEGORY_JS = "前端";

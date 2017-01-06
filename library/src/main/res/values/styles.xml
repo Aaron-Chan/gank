@@ -1,0 +1,20 @@
+<resources>
+
+    <style name="md_list_text_only_two_line_root" parent="md_list_text_two_line_root">
+
+    </style>
+
+    <style name="md_list_text_two_line_root">
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:layout_height">80dp</item>
+    </style>
+
+    <style name="md_list_icon_with_text_two_line_root" parent="md_list_text_two_line_root">
+
+    </style>
+
+</resources>

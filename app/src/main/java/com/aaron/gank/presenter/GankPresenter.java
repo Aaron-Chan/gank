@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.aaron.gank.data.Response;
 import com.aaron.gank.data.entity.GankEntity;
-import com.aaron.gank.repository.GankServiceFactory;
+import com.aaron.gank.model.impl.DataModel;
 import com.aaron.gank.rx.DefaultSubscriber;
 import com.aaron.gank.view.GankView;
 import com.aaron.library.presenter.ListPresenter;
@@ -27,8 +27,7 @@ public class GankPresenter extends ListPresenter<GankView> {
 
     @Override
     protected void loadData(final int pageIndex) {
-        GankServiceFactory.getInstance().getGankService()
-                .getCategoryData(mType, 10, pageIndex)
+        mCompositeSubscription.add(DataModel.getInstance().getData(mType, getPageSize(), pageIndex)
                 .compose(RxUtils.<Response<List<GankEntity>>>getTransformer())
                 .subscribe(new DefaultSubscriber<Response<List<GankEntity>>>() {
                     @Override
@@ -41,6 +40,6 @@ public class GankPresenter extends ListPresenter<GankView> {
                     public void onFailed(Throwable e) {
                         onDataObtainFailed(e);
                     }
-                });
+                }));
     }
 }

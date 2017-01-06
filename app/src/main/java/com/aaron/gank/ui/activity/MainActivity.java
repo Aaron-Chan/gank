@@ -13,7 +13,9 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.aaron.gank.R;
+import com.aaron.gank.ui.fragment.CategoryFragment;
 import com.aaron.gank.ui.fragment.DailyFragment;
+import com.aaron.gank.ui.fragment.GirlsFragment;
 
 import java.util.HashMap;
 import java.util.List;
@@ -97,10 +99,10 @@ public class MainActivity extends BaseActivity {
                         fragmentClass = DailyFragment.class;
                         break;
                     case R.id.menu_item_category:
-                        fragmentClass = DailyFragment.class;
+                        fragmentClass = CategoryFragment.class;
                         break;
                     case R.id.menu_item_girl:
-                        fragmentClass = DailyFragment.class;
+                        fragmentClass = GirlsFragment.class;
                         break;
                 }
                 switchFragment(fragmentClass);

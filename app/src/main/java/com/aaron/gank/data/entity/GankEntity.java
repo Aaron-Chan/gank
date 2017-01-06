@@ -3,6 +3,7 @@ package com.aaron.gank.data.entity;
 import com.google.gson.annotations.SerializedName;
 
 import java.sql.Date;
+import java.util.List;
 
 
 /**
@@ -46,8 +47,20 @@ public class GankEntity {
     @SerializedName("who")
     private String who;
 
+    @SerializedName("images")
+    private List<String> images;
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
     public String getId() {
         return id;
+
     }
 
     public void setId(String id) {

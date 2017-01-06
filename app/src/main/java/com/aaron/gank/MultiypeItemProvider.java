@@ -3,9 +3,13 @@ package com.aaron.gank;
 import com.aaron.gank.data.entity.CategoryTitle;
 import com.aaron.gank.data.entity.DailyHeader;
 import com.aaron.gank.data.entity.GankEntity;
+import com.aaron.gank.data.entity.GankImageEntity;
+import com.aaron.gank.data.entity.GankTextEntity;
 import com.aaron.gank.ui.provider.CategoryTitleProvider;
 import com.aaron.gank.ui.provider.DailyHeaderProvider;
 import com.aaron.gank.ui.provider.GankEntityProvider;
+import com.aaron.gank.ui.provider.GankImageEntityProvider;
+import com.aaron.gank.ui.provider.GankTextEntityProvider;
 
 import me.drakeet.multitype.GlobalMultiTypePool;
 
@@ -19,6 +23,8 @@ public class MultiypeItemProvider {
         GlobalMultiTypePool.register(GankEntity.class, new GankEntityProvider());
         GlobalMultiTypePool.register(CategoryTitle.class, new CategoryTitleProvider());
         GlobalMultiTypePool.register(DailyHeader.class, new DailyHeaderProvider());
+        GlobalMultiTypePool.register(GankImageEntity.class, new GankImageEntityProvider());
+        GlobalMultiTypePool.register(GankTextEntity.class, new GankTextEntityProvider());
     }
 
 }

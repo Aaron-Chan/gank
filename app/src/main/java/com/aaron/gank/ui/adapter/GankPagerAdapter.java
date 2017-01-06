@@ -34,7 +34,7 @@ public class GankPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return mTitles.size();
+        return mTitles == null ? 0 : mTitles.size();
     }
 
     @Override
