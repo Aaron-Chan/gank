@@ -51,6 +51,7 @@ public abstract class LoadMoreScrollListener extends RecyclerView.OnScrollListen
 
         }
         if (!mIsLoading && visibleItemCount > 0 && mTotalItemCount - 1 == mLastVisibleItemPosition && recyclerView.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
+            mIsLoading = true;
             loadMore();
         }
 
