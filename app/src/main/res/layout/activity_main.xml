@@ -9,7 +9,8 @@
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
         <include
             layout="@layout/common_toolbar"
@@ -23,10 +24,11 @@
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/bottom_navigation"
+            app:layout_behavior="@string/bye_burger_bottom_behavior"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:background="@android:color/white"
             android:layout_gravity="bottom"
+            android:background="@android:color/white"
             app:menu="@menu/menu_bottom_navigation"
             />
         <!--app:itemIconTint="@color/bottom_item_color"-->

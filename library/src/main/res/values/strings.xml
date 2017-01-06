@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Library</string>
+
+    <string name="bye_burger_bottom_behavior">com.aaron.library.behavior.byeburgernavigationview.ByeBurgerBottomBehavior</string>
+    <string name="bye_burger_title_behavior">com.aaron.library.behavior.byeburgernavigationview.ByeBurgerTitleBehavior</string>
 </resources>
