@@ -82,7 +82,7 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     //region Get ViewHolder
-    private ViewHolder getLoadMoreViewHolder() {
+    private VH getLoadMoreViewHolder() {
         if (mLoadMoreView == null) {
             mLoadMoreView = new TextView(mContext);
             mLoadMoreView.setLayoutParams(new ViewGroup.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
@@ -90,10 +90,10 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
             ((TextView) mLoadMoreView).setText("加载中...");
             ((TextView) mLoadMoreView).setGravity(Gravity.CENTER);
         }
-        return ViewHolder.newInstance(mContext, mLoadMoreView);
+        return VH.newInstance(mContext, mLoadMoreView);
     }
 
-    private ViewHolder getLoadFailedViewHolder() {
+    private VH getLoadFailedViewHolder() {
         if (mLoadMoreFailedView == null) {
             mLoadMoreFailedView = new TextView(mContext);
             mLoadMoreFailedView.setPadding(20, 20, 20, 20);
@@ -101,10 +101,10 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
             ((TextView) mLoadMoreFailedView).setText("加载失败，点击重试");
             ((TextView) mLoadMoreFailedView).setGravity(Gravity.CENTER);
         }
-        return ViewHolder.newInstance(mContext, mLoadMoreFailedView);
+        return VH.newInstance(mContext, mLoadMoreFailedView);
     }
 
-    private ViewHolder getNoMoreViewHolder() {
+    private VH getNoMoreViewHolder() {
         if (mNoMoreView == null) {
             mNoMoreView = new TextView(mContext);
             mNoMoreView.setPadding(20, 20, 20, 20);
@@ -112,7 +112,7 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolde
             ((TextView) mNoMoreView).setText("已经没有啦");
             ((TextView) mNoMoreView).setGravity(Gravity.CENTER);
         }
-        return ViewHolder.newInstance(mContext, mNoMoreView);
+        return VH.newInstance(mContext, mNoMoreView);
     }
     //endregion
 

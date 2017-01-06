@@ -55,8 +55,7 @@ dependencies {
     //logger
     // compile rootProject.ext.dependencies["logger"]
 
-    //图片框架
-    compile rootProject.ext.dependencies["glide"]
+
 
 //    compile(rootProject.ext.dependencies["multitype"], {
 //        exclude group: 'com.android.support'

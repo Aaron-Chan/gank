@@ -1,8 +1,10 @@
 package com.aaron.gank;
 
-import com.aaron.gank.data.DailyData;
+import com.aaron.gank.data.entity.CategoryTitle;
+import com.aaron.gank.data.entity.DailyHeader;
 import com.aaron.gank.data.entity.GankEntity;
-import com.aaron.gank.ui.provider.DailyDataProvider;
+import com.aaron.gank.ui.provider.CategoryTitleProvider;
+import com.aaron.gank.ui.provider.DailyHeaderProvider;
 import com.aaron.gank.ui.provider.GankEntityProvider;
 
 import me.drakeet.multitype.GlobalMultiTypePool;
@@ -14,8 +16,9 @@ import me.drakeet.multitype.GlobalMultiTypePool;
 public class MultiypeItemProvider {
 
     public static void register() {
-        GlobalMultiTypePool.register(DailyData.class, new DailyDataProvider());
         GlobalMultiTypePool.register(GankEntity.class, new GankEntityProvider());
+        GlobalMultiTypePool.register(CategoryTitle.class, new CategoryTitleProvider());
+        GlobalMultiTypePool.register(DailyHeader.class, new DailyHeaderProvider());
     }
 
 }

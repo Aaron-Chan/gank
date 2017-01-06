@@ -40,6 +40,10 @@ public abstract class ListPresenter<V extends IListView> extends BasePresenter<V
         return 1;
     }
 
+    protected int getPageSize() {
+        return 10;
+    }
+
     public void disAbleLoadMore() {
         isCanLoadMore = false;
         mView.disableLoadMore();
@@ -67,4 +71,7 @@ public abstract class ListPresenter<V extends IListView> extends BasePresenter<V
     }
 
 
+    public void onRetry() {
+        loadData(mCurrentPageIndex);
+    }
 }

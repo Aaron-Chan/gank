@@ -44,12 +44,14 @@ public abstract class BaseListFragment extends BaseFragment implements IListView
     @Override
     protected void initViews() {
         mRecyclerView.setLayoutManager(getLayoutManager());
+
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 BaseListFragment.this.onRefresh();
             }
         });
+
         mItems = new ArrayList();
         MultiTypeAdapter multiTypeAdapter = getAdapter();
         multiTypeAdapter.applyGlobalMultiTypePool();
@@ -65,6 +67,8 @@ public abstract class BaseListFragment extends BaseFragment implements IListView
                 BaseListFragment.this.onLoadMore();
             }
         });
+        mRecyclerView.setAdapter(mLoadMoreWrapper);
+
         mStatusLayout.setOnRetryListener(new View.OnClickListener() {//错误重试
             @Override
             public void onClick(View v) {

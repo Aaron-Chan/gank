@@ -11,6 +11,7 @@ import java.util.Locale;
 
 public class DateUtils {
 
+    public static SimpleDateFormat sFormatDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
     /**
      * String 转换 Date
@@ -26,6 +27,16 @@ public class DateUtils {
             e.printStackTrace();
         }
         return new Date();
+    }
+
+    /**
+     * 格式化日期
+     *
+     * @param date 日期
+     * @return 年月日
+     */
+    public static String formatDate(Date date) {
+        return sFormatDate.format(date);
     }
 
 }

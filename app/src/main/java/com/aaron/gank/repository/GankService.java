@@ -19,7 +19,7 @@ import rx.Observable;
 public interface GankService {
 
     String BASE_URL = "http://www.gank.io/api/";
-    String PUBLISH_DATE_FORMAT = "yyyy-MM-dd";
+    String GANK_ITEM_PUBLISH_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
 
     /**
      * 获取某天的干货

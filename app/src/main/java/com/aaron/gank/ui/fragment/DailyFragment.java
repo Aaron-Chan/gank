@@ -35,7 +35,7 @@ public class DailyFragment extends BaseListFragment implements DailyView {
 
     @Override
     public void onRetry() {
-        mDailyPresenter.onRefresh();
+        mDailyPresenter.onRetry();
     }
 
     @Override

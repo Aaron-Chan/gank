@@ -1,11 +1,12 @@
 package com.aaron.gank.model.impl;
 
+import android.support.annotation.NonNull;
+
 import com.aaron.gank.data.DailyData;
 import com.aaron.gank.data.Response;
 import com.aaron.gank.model.IDailyDataModel;
 import com.aaron.gank.repository.GankService;
 import com.aaron.gank.repository.GankServiceFactory;
-import com.aaron.library.utils.DateUtils;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import rx.Observable;
 import rx.functions.Func1;
+import rx.functions.Func2;
 
 /**
  * Created by Aaron on 2016/12/24.
@@ -22,8 +24,6 @@ import rx.functions.Func1;
 public class DailyDataModel implements IDailyDataModel {
 
     private static final DailyDataModel INSTANCE = new DailyDataModel();
-    private List<Date> mPublishDates;
-
 
     private DailyDataModel() {
 
@@ -34,40 +34,41 @@ public class DailyDataModel implements IDailyDataModel {
     }
 
     @Override
-    public Observable<List<DailyData>> getDailyData(Date date) {
-
-        GankService gankService = GankServiceFactory.getInstance().getGankService();
-
-        //先获取发布干货日期，再与当前日期作比较
-        gankService.getPublishDates()
-                .map(new Func1<Response<List<String>>, List<String>>() {
+    public Observable<List<DailyData>> getDailyData(@NonNull List<Date> dates) {
+        return Observable.just(dates)
+                .flatMapIterable(new Func1<List<Date>, Iterable<Date>>() {
                     @Override
-                    public List<String> call(Response<List<String>> listResponse) {
-                        if (listResponse.isError()) {
-                            throw new RuntimeException("response's error is true");
-                        } else {
-                            return listResponse.getResults();
-                        }
+                    public Iterable<Date> call(List<Date> dates) {
+                        return dates;
                     }
                 })
-                .flatMap(new Func1<List<String>, Observable<String>>() {
+                .flatMap(new Func1<Date, Observable<DailyData>>() {
                     @Override
-                    public Observable<String> call(List<String> strings) {
-                        return Observable.from(strings);
+                    public Observable<DailyData> call(Date date) {
+                        GankService gankService = GankServiceFactory.getInstance().getGankService();
+
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(date);
+
+                        return gankService.getDailyData(calendar.get(Calendar.YEAR),
+                                calendar.get(Calendar.MONTH) + 1,
+                                calendar.get(Calendar.DAY_OF_MONTH));
                     }
                 })
-                .map(new Func1<String, Date>() {
+                .toSortedList(new Func2<DailyData, DailyData, Integer>() {
                     @Override
-                    public Date call(String s) {
-                        return DateUtils.string2Date(s, GankService.PUBLISH_DATE_FORMAT);
+                    public Integer call(DailyData dailyData, DailyData dailyData2) {
+                        // 降序排列
+                        return dailyData2.getResults().androidData.get(0).getPublishedAt()
+                                .compareTo(dailyData.getResults().androidData.get(0).getPublishedAt());
                     }
                 });
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
+    }
 
+    @Override
+    public Observable<Response<List<String>>> getPublishDates() {
+        GankService gankService = GankServiceFactory.getInstance().getGankService();
 
-        return gankService.getDailyData(calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH) + 1,
-                calendar.get(Calendar.DAY_OF_MONTH)).toList();
+        return gankService.getPublishDates();
     }
 }

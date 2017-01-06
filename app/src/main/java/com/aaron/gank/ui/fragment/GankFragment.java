@@ -53,7 +53,7 @@ public class GankFragment extends BaseListFragment implements GankView {
 
     @Override
     public void onRetry() {
-        mGankPresenter.onRefresh();
+        mGankPresenter.onRetry();
     }
 
     @Override

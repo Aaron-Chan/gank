@@ -2,6 +2,9 @@ package com.aaron.gank.data.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.sql.Date;
+
+
 /**
  * Created by Aaron on 2016/12/24.
  */
@@ -21,12 +24,26 @@ public class GankEntity {
 
     @SerializedName("_id")
     private String id;
+
+    @SerializedName("createdAt")
     private String createdAt;
+
+    @SerializedName("desc")
     private String desc;
-    private String publishedAt;
+
+    @SerializedName("publishedAt")
+    private Date publishedAt;
+
+    @SerializedName("type")
     private String type;
+
+    @SerializedName("url")
     private String url;
+
+    @SerializedName("used")
     private boolean used;
+
+    @SerializedName("who")
     private String who;
 
     public String getId() {
@@ -53,11 +70,11 @@ public class GankEntity {
         this.desc = desc;
     }
 
-    public String getPublishedAt() {
+    public Date getPublishedAt() {
         return publishedAt;
     }
 
-    public void setPublishedAt(String publishedAt) {
+    public void setPublishedAt(Date publishedAt) {
         this.publishedAt = publishedAt;
     }
 

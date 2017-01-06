@@ -17,7 +17,7 @@ public abstract class BaseSubscriber<T> extends Subscriber<T> {
     }
 
     @Override
-    public void onError(Throwable e) {
+    public final void onError(Throwable e) {
         if (e == null) {
             e = new Throwable("error message is empty");
         }
@@ -26,7 +26,7 @@ public abstract class BaseSubscriber<T> extends Subscriber<T> {
     }
 
     @Override
-    public void onNext(T t) {
+    public  void onNext(T t) {
         onSuccess(t);
     }
 

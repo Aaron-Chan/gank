@@ -1,11 +1,17 @@
 package com.aaron.gank.repository;
 
+import android.support.annotation.NonNull;
+
+import com.aaron.gank.App;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -45,10 +51,12 @@ public class GankServiceFactory {
             OkHttpClient client = new OkHttpClient.Builder()
                     .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                     .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                    .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                    .cache(new Cache(App.sContext.getCacheDir(), 100 * 1024 * 1024))
                     .addInterceptor(new LoggingInterceptor())
                     .build();
             Retrofit retrofit = new Retrofit.Builder()
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(createGson()))
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .baseUrl(GankService.BASE_URL)
                     .client(client)
@@ -56,6 +64,11 @@ public class GankServiceFactory {
             sGankService = retrofit.create(GankService.class);
         }
         return sGankService;
+    }
+
+    @NonNull
+    private Gson createGson() {
+        return new GsonBuilder().setDateFormat(GankService.GANK_ITEM_PUBLISH_DATE_FORMAT).create();
     }
 
     /**
@@ -88,7 +101,6 @@ public class GankServiceFactory {
 
             return response;
         }
-
     }
 
 

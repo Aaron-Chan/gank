@@ -26,6 +26,8 @@ dependencies {
     compile rootProject.ext.dependencies["rxandroid"]
     compile rootProject.ext.dependencies["design"]
     compile rootProject.ext.dependencies["logger"]
+    //图片框架
+    compile rootProject.ext.dependencies["glide"]
 
     compile rootProject.ext.dependencies["butterknife"]
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
