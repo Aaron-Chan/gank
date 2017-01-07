@@ -3,32 +3,37 @@
               xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:orientation="horizontal">
-
+    <!--72dp-16dp= 56dp-->
     <ImageView
         android:id="@+id/iv_pic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="8dp"/>
 
-    <!--72dp-16dp= 56dp-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
         android:orientation="vertical"
-        android:paddingLeft="56dp"
-        android:paddingStart="56dp"
+        android:paddingLeft="16dp"
+        android:paddingStart="16dp"
         >
 
         <TextView
             android:id="@+id/tv_title"
-            android:textSize="16sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/tv_sub_title"
-            android:textSize="14sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textSize="14sp"/>
 
     </LinearLayout>
 

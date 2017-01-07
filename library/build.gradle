@@ -35,4 +35,5 @@ dependencies {
     compile(rootProject.ext.dependencies["multitype"], {
         exclude group: 'com.android.support'
     })
+
 }

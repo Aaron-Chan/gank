@@ -4,6 +4,7 @@ package com.aaron.gank.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 
 import com.aaron.gank.data.entity.GankEntity;
 import com.aaron.gank.data.entity.GankImageEntity;
@@ -19,7 +20,7 @@ import me.drakeet.multitype.MultiTypeAdapter;
  */
 public class GankFragment extends BaseListFragment implements GankView {
 
-    private static final String ARGU_TYPE = "type";
+    private static final String ARG_TYPE = "type";
     private String mType;
     private GankPresenter mGankPresenter;
 
@@ -28,7 +29,7 @@ public class GankFragment extends BaseListFragment implements GankView {
 
     public static GankFragment newInstance(@NonNull String type) {
         Bundle bundle = new Bundle();
-        bundle.putString(ARGU_TYPE, type);
+        bundle.putString(ARG_TYPE, type);
         GankFragment gankFragment = new GankFragment();
         gankFragment.setArguments(bundle);
         return gankFragment;
@@ -37,7 +38,13 @@ public class GankFragment extends BaseListFragment implements GankView {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mType = getArguments().getString(ARGU_TYPE);
+        mType = getArguments().getString(ARG_TYPE);
+    }
+
+    @Override
+    protected void customViewConfig() {
+        super.customViewConfig();
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
     }
 
     @Override

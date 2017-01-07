@@ -27,11 +27,11 @@ import me.drakeet.multitype.MultiTypeAdapter;
 public abstract class BaseListFragment extends BaseFragment implements IListView {
 
     @BindView(R2.id.recyclerView)
-    RecyclerView mRecyclerView;
+    protected RecyclerView mRecyclerView;
     @BindView(R2.id.swipe_refresh_layout)
-    SwipeRefreshLayout mSwipeRefreshLayout;
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
     @BindView(R2.id.status_layout)
-    StatusViewLayout mStatusLayout;
+    protected StatusViewLayout mStatusLayout;
 
     protected List mItems;
     private LoadMoreWrapper mLoadMoreWrapper;
@@ -75,6 +75,14 @@ public abstract class BaseListFragment extends BaseFragment implements IListView
                 BaseListFragment.this.onRetry();
             }
         });
+
+        customViewConfig();
+    }
+
+    /**
+     * 自定义view参数
+     */
+    protected void customViewConfig() {
 
     }
 

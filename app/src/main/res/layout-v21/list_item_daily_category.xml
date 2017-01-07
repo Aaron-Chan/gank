@@ -2,10 +2,14 @@
 <TextView
     android:id="@+id/tv_category"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="48dp"
-    android:padding="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
     android:textAppearance="@android:style/TextAppearance.Material.Widget.Toolbar.Subtitle"
     android:textSize="14sp"
-    android:textStyle="bold"/>
+    android:gravity="center_vertical"
+    android:textStyle="bold"
+    tools:text="Android"/>
 

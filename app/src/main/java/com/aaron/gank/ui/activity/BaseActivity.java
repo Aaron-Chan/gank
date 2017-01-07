@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.aaron.gank.App;
 import com.aaron.gank.R;
 import com.aaron.library.presenter.BasePresenter;
 import com.aaron.library.view.BaseView;
@@ -34,6 +35,13 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         initToolbar();
         initViews();
         initData();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // 检查内存泄露
+        App.getRefWatcher(this).watch(this);
     }
 
     protected abstract void init(Bundle savedInstanceState);
