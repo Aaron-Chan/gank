@@ -65,6 +65,7 @@ public class GirlsFragment extends BaseListFragment implements GrilsView {
         };
     }
 
+
     public void changeDisplayMode() {
         RecyclerView.LayoutManager layoutManager;
         mIsLinearLayoutMode = !mIsLinearLayoutMode;

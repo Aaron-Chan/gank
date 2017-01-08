@@ -1,4 +1,4 @@
-package com.aaron.gank.ui.activity;
+package com.aaron.library.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,12 +6,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.aaron.gank.App;
-import com.aaron.gank.R;
+import com.aaron.library.AaronApplication;
+import com.aaron.library.R;
 import com.aaron.library.presenter.BasePresenter;
 import com.aaron.library.view.BaseView;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -23,7 +22,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
     protected P mPresenter;
 
-    @BindView(R.id.toolbar)
     protected Toolbar mToolbar;
 
     @Override
@@ -31,6 +29,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         super.onCreate(savedInstanceState);
         init(savedInstanceState);
         setContentView(getLayoutId());
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         ButterKnife.bind(this);
         initToolbar();
         initViews();
@@ -41,7 +40,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected void onDestroy() {
         super.onDestroy();
         // 检查内存泄露
-        App.getRefWatcher(this).watch(this);
+        AaronApplication.getRefWatcher(this).watch(this);
     }
 
     protected abstract void init(Bundle savedInstanceState);

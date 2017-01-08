@@ -17,6 +17,7 @@ import com.aaron.gank.R;
 import com.aaron.gank.ui.fragment.CategoryFragment;
 import com.aaron.gank.ui.fragment.DailyFragment;
 import com.aaron.gank.ui.fragment.GirlsFragment;
+import com.aaron.library.activity.BaseActivity;
 
 import java.util.HashMap;
 import java.util.List;

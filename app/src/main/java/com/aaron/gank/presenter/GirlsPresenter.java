@@ -40,4 +40,9 @@ public class GirlsPresenter extends ListPresenter<GrilsView> {
                     }
                 }));
     }
+
+    @Override
+    protected int getPageSize() {
+        return super.getPageSize();
+    }
 }
