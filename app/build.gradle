@@ -26,7 +26,10 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile project(":library")
+
+    compile(project(':library')) {
+        exclude group: 'com.squareup.leakcanary' // 避免 duplicate entry
+    }
 
 //    //butterknife
     compile rootProject.ext.dependencies["butterknife"]
@@ -59,7 +62,9 @@ dependencies {
 //        exclude group: 'com.android.support'
 //    })
 
-
+    // 内存泄漏检查
+    debugCompile rootProject.ext.dependencies["leakcanaryDebug"]
+    releaseCompile rootProject.ext.dependencies["leakcanaryRelease"]
 
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
