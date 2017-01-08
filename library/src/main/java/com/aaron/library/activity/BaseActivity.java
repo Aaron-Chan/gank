@@ -1,6 +1,7 @@
 package com.aaron.library.activity;
 
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -50,6 +51,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected abstract void initViews();
 
     //get content view resource id
+    @LayoutRes
     abstract protected int getLayoutId();
 
     protected void initToolbar() {

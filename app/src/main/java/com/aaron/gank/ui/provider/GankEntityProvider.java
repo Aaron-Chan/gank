@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.aaron.gank.R;
 import com.aaron.gank.data.entity.GankEntity;
+import com.aaron.gank.ui.activity.GankDetailActivity;
 import com.aaron.library.adapter.VH;
 
 import me.drakeet.multitype.ItemViewProvider;
@@ -25,8 +26,15 @@ public class GankEntityProvider extends ItemViewProvider<GankEntity, VH> {
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull VH holder, @NonNull GankEntity gankEntity) {
+    protected void onBindViewHolder(@NonNull VH holder, @NonNull final GankEntity gankEntity) {
         holder.setText(R.id.tv_daily_item, gankEntity.getDesc());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GankDetailActivity.open(view.getContext(), gankEntity.getUrl(), gankEntity.getDesc(),
+                        GankDetailActivity.class);
+            }
+        });
     }
 
 }

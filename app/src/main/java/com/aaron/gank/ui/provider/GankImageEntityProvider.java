@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.aaron.gank.R;
 import com.aaron.gank.data.entity.GankEntity;
+import com.aaron.gank.ui.activity.GankDetailActivity;
 import com.aaron.gank.utils.GlideUtilsWrapper;
 import com.aaron.library.adapter.VH;
 
@@ -27,9 +28,16 @@ public class GankImageEntityProvider extends ItemViewProvider<GankEntity, VH> {
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull VH holder, @NonNull GankEntity gankImageEntity) {
+    protected void onBindViewHolder(@NonNull VH holder, @NonNull final GankEntity gankImageEntity) {
         holder.setText(R.id.tv_title, gankImageEntity.getDesc());
         holder.setText(R.id.tv_sub_title, gankImageEntity.getWho());
         GlideUtilsWrapper.loadImage((ImageView) holder.getView(R.id.iv_pic), gankImageEntity.getImages().get(0));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GankDetailActivity.open(view.getContext(), gankImageEntity.getUrl(),
+                        gankImageEntity.getDesc(),GankDetailActivity.class);
+            }
+        });
     }
 }
