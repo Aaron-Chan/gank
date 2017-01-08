@@ -5,11 +5,13 @@ import com.aaron.gank.data.entity.DailyHeader;
 import com.aaron.gank.data.entity.GankEntity;
 import com.aaron.gank.data.entity.GankImageEntity;
 import com.aaron.gank.data.entity.GankTextEntity;
+import com.aaron.gank.data.entity.GirlEntity;
 import com.aaron.gank.ui.provider.CategoryTitleProvider;
 import com.aaron.gank.ui.provider.DailyHeaderProvider;
 import com.aaron.gank.ui.provider.GankEntityProvider;
 import com.aaron.gank.ui.provider.GankImageEntityProvider;
 import com.aaron.gank.ui.provider.GankTextEntityProvider;
+import com.aaron.gank.ui.provider.GirlEntityProvider;
 
 import me.drakeet.multitype.GlobalMultiTypePool;
 
@@ -25,6 +27,7 @@ public class MultiypeItemProvider {
         GlobalMultiTypePool.register(DailyHeader.class, new DailyHeaderProvider());
         GlobalMultiTypePool.register(GankImageEntity.class, new GankImageEntityProvider());
         GlobalMultiTypePool.register(GankTextEntity.class, new GankTextEntityProvider());
+        GlobalMultiTypePool.register(GirlEntity.class, new GirlEntityProvider());
     }
 
 }

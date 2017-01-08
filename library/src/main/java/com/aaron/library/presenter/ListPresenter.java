@@ -22,6 +22,8 @@ public abstract class ListPresenter<V extends IListView> extends BasePresenter<V
         mItems = items;
     }
 
+
+
     protected abstract void loadData(int pageIndex);
 
     public void onRefresh() {

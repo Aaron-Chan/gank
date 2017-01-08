@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -37,6 +38,7 @@ public class MainActivity extends BaseActivity {
     private FragmentManager mFragmentManager;
     private Fragment mCurrentFragment;
     private Map<String, Fragment> mFragmentMap = new HashMap<>();
+    private boolean mIsGirlShown;
 
 
     @Override
@@ -136,12 +138,46 @@ public class MainActivity extends BaseActivity {
                 transaction.add(R.id.fl_content, fragment).commit();
             }
             mCurrentFragment = fragment;
+            // 设置显示方式菜单项是否显示
+            if (mCurrentFragment instanceof GirlsFragment && !mIsGirlShown) {// 从非妹子切换到妹子视图
+                mIsGirlShown = true;
+                invalidateOptionsMenu();
+            } else if (mIsGirlShown) {// 从非妹子切换到妹子视图
+                mIsGirlShown = false;
+                invalidateOptionsMenu();
+            }
         }
     }
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    protected int getMenuRes() {
+        return R.menu.menu_main;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem menuItem = menu.findItem(R.id.menu_item_display_mode);
+        menuItem.setVisible(mIsGirlShown);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_display_mode:
+                if (mCurrentFragment instanceof GirlsFragment) {
+                    ((GirlsFragment) mCurrentFragment).changeDisplayMode();
+                    return true;
+                }
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
