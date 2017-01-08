@@ -8,6 +8,7 @@ android {
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
+        vectorDrawables.useSupportLibrary true
     }
     buildTypes {
         release {
@@ -26,6 +27,8 @@ dependencies {
     compile rootProject.ext.dependencies["rxandroid"]
     compile rootProject.ext.dependencies["design"]
     compile rootProject.ext.dependencies["logger"]
+
+    compile rootProject.ext.dependencies["photoView"]
     //图片框架
     compile rootProject.ext.dependencies["glide"]
 

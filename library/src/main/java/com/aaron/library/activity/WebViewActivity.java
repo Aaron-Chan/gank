@@ -113,20 +113,28 @@ public abstract class WebViewActivity extends BaseActivity {
         int itemId = item.getItemId();
         if (itemId == R.id.menu_item_copy_url) {
             // 复制链接
-            String url = mWebView.getUrl();
-            ClipboardUtils.copyText(url);
-            Snackbar.make(mToolbar, "已复制到剪切板", Snackbar.LENGTH_SHORT).show();
+            copyUrl();
             return true;
         } else if (itemId == R.id.menu_item_reload) {
             mWebView.loadUrl(mUrl);
             return true;
         } else if (itemId == R.id.menu_item_share) {
-            ShareUtils.share(this, String.format("分享【%s】链接：%s", mTitle, mWebView.getUrl()));
+            share();
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    protected void share() {
+        ShareUtils.share(this, String.format("分享【%s】链接：%s", mTitle, mWebView.getUrl()));
+    }
+
+    protected void copyUrl() {
+        String url = mWebView.getUrl();
+        ClipboardUtils.copyText(url);
+        Snackbar.make(mToolbar, "已复制到剪切板", Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
