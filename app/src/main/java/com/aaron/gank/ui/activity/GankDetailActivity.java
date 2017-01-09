@@ -8,11 +8,11 @@ public class GankDetailActivity extends WebViewActivity {
 
     @Override
     protected void loadStart() {
-
+        // do nothing
     }
 
     @Override
     protected void onPageLoadFinished(WebView view, String url) {
-
+        // do nothing
     }
 }

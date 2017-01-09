@@ -1,5 +1,6 @@
 package com.aaron.gank.ui.provider;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import com.aaron.gank.R;
 import com.aaron.gank.data.entity.DailyHeader;
 import com.aaron.gank.utils.GlideUtilsWrapper;
+import com.aaron.library.activity.PicViewActivity;
 import com.aaron.library.adapter.VH;
 import com.aaron.library.utils.DateUtils;
 
@@ -29,9 +31,17 @@ public class DailyHeaderProvider extends ItemViewProvider<DailyHeader, VH> {
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull VH holder, @NonNull DailyHeader dailyHeader) {
-        holder.setText(R.id.tv_date, DateUtils.formatDate(dailyHeader.getDate()));
-        GlideUtilsWrapper.loadImage((ImageView) holder.getView(R.id.iv_girl), dailyHeader.getImgUrl());
+    protected void onBindViewHolder(@NonNull VH holder, @NonNull final DailyHeader dailyHeader) {
+        final String date = DateUtils.formatDate(dailyHeader.getDate());
+        holder.setText(R.id.tv_date, date);
+        ImageView imageView = holder.getView(R.id.iv_girl);
+        GlideUtilsWrapper.loadImage(imageView, dailyHeader.getImgUrl());
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PicViewActivity.open((Activity) v.getContext(), dailyHeader.getImgUrl(), date, v);
+            }
+        });
     }
 
 

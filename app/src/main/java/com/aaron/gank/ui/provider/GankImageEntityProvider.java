@@ -1,5 +1,6 @@
 package com.aaron.gank.ui.provider;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import com.aaron.gank.R;
 import com.aaron.gank.data.entity.GankEntity;
 import com.aaron.gank.ui.activity.GankDetailActivity;
 import com.aaron.gank.utils.GlideUtilsWrapper;
+import com.aaron.library.activity.PicViewActivity;
 import com.aaron.library.adapter.VH;
 
 import me.drakeet.multitype.ItemViewProvider;
@@ -31,12 +33,20 @@ public class GankImageEntityProvider extends ItemViewProvider<GankEntity, VH> {
     protected void onBindViewHolder(@NonNull VH holder, @NonNull final GankEntity gankImageEntity) {
         holder.setText(R.id.tv_title, gankImageEntity.getDesc());
         holder.setText(R.id.tv_sub_title, gankImageEntity.getWho());
-        GlideUtilsWrapper.loadImage((ImageView) holder.getView(R.id.iv_pic), gankImageEntity.getImages().get(0));
+        final ImageView imageView = holder.getView(R.id.iv_pic);
+        final String imageUrl = gankImageEntity.getImages().get(0);
+        GlideUtilsWrapper.loadImage(imageView, imageUrl);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PicViewActivity.open((Activity) v.getContext(), imageUrl, gankImageEntity.getDesc(), v);
+            }
+        });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 GankDetailActivity.open(view.getContext(), gankImageEntity.getUrl(),
-                        gankImageEntity.getDesc(),GankDetailActivity.class);
+                        gankImageEntity.getDesc(), GankDetailActivity.class);
             }
         });
     }

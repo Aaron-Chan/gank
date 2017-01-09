@@ -1,5 +1,6 @@
 package com.aaron.gank.ui.provider;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,9 @@ import android.widget.ImageView;
 import com.aaron.gank.R;
 import com.aaron.gank.data.entity.GankEntity;
 import com.aaron.gank.utils.GlideUtilsWrapper;
+import com.aaron.library.activity.PicViewActivity;
 import com.aaron.library.adapter.VH;
+import com.aaron.library.utils.DateUtils;
 
 import me.drakeet.multitype.ItemViewProvider;
 
@@ -26,7 +29,15 @@ public class GirlEntityProvider extends ItemViewProvider<GankEntity, VH> {
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull VH holder, @NonNull GankEntity gankEntity) {
-        GlideUtilsWrapper.loadImage((ImageView) holder.getView(R.id.iv_girl), gankEntity.getUrl());
+    protected void onBindViewHolder(@NonNull VH holder, @NonNull final GankEntity gankEntity) {
+        ImageView imageView = holder.getView(R.id.iv_girl);
+        GlideUtilsWrapper.loadImage(imageView, gankEntity.getUrl());
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String date = DateUtils.formatDate(gankEntity.getPublishedAt());
+                PicViewActivity.open((Activity) v.getContext(), gankEntity.getUrl(), date, v);
+            }
+        });
     }
 }

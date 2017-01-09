@@ -3,8 +3,11 @@
 
     <string name="bye_burger_bottom_behavior">com.aaron.library.behavior.byeburgernavigationview.ByeBurgerBottomBehavior</string>
     <string name="bye_burger_title_behavior">com.aaron.library.behavior.byeburgernavigationview.ByeBurgerTitleBehavior</string>
+
     <string name="menu_web_copy_url">复制链接</string>
     <string name="menu_web_reload">重新加载</string>
     <string name="menu_web_share">分享</string>
     <string name="send_to">分享</string>
+
+    <string name="pic_activity_transition_name">pic</string>
 </resources>
