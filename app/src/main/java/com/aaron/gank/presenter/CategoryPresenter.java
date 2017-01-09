@@ -26,7 +26,7 @@ public class CategoryPresenter extends BasePresenter<CategoryView> {
 
     public void getCategoriesNames() {
         mCategoryModel.getCategories()
-                .compose(RxUtils.<List<String>>getTransformer())
+                .compose(RxUtils.<List<String>>getDefaultTransformer())
                 .subscribe(new BaseSubscriber<List<String>>() {
                     @Override
                     public void onSuccess(@NonNull List<String> strings) {

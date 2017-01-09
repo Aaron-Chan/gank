@@ -28,6 +28,10 @@ dependencies {
     compile rootProject.ext.dependencies["design"]
     compile rootProject.ext.dependencies["logger"]
 
+    compile rootProject.ext.dependencies["retrofit-covert-gson"]
+    compile rootProject.ext.dependencies["retrofit"]
+    compile rootProject.ext.dependencies["retrofit-rxjava"]
+
     compile rootProject.ext.dependencies["photoView"]
     //图片框架
     compile rootProject.ext.dependencies["glide"]

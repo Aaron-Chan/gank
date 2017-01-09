@@ -9,25 +9,29 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewCompat;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.aaron.library.R;
 import com.aaron.library.R2;
 import com.aaron.library.presenter.PicViewPresenter;
 import com.aaron.library.utils.GlideUtils;
+import com.aaron.library.utils.ToastUtils;
+import com.aaron.library.view.PicView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import uk.co.senab.photoview.PhotoView;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
-public class PicViewActivity extends BaseActivity<PicViewPresenter> {
+public class PicViewActivity extends BaseActivity<PicViewPresenter> implements PicView {
 
     private static final String ARG_URL = "url";
     private static final String ARG_TITLE = "title";
 
     @BindView(R2.id.photoView)
-    PhotoView mPhotoView;
+    ImageView mPhotoView;
     private String mUrl;
     private String mTitle;
+    private PhotoViewAttacher mAttacher;
 
 
     public static void open(Activity activity, String url, String title) {
@@ -62,16 +66,27 @@ public class PicViewActivity extends BaseActivity<PicViewPresenter> {
 
     @Override
     protected void initData() {
-        mPresenter = getPicViewPresenter();
+        mPresenter = new PicViewPresenter(this);
     }
 
-    protected PicViewPresenter getPicViewPresenter() {
-        return null;
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mAttacher.cleanup();
     }
+
 
     @Override
     protected void initViews() {
         setTitle(mTitle, true);
+        mAttacher = new PhotoViewAttacher(mPhotoView);
+        mAttacher.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return false;
+            }
+        });
+
         ViewCompat.setTransitionName(mPhotoView, getString(R.string.pic_activity_transition_name));
         GlideUtils.loadImage(mPhotoView, mUrl);
     }
@@ -83,7 +98,7 @@ public class PicViewActivity extends BaseActivity<PicViewPresenter> {
 
     @Override
     public void showError(String errorMsg) {
-
+        ToastUtils.showShort("保存失败");
     }
 
     @Override
@@ -95,8 +110,14 @@ public class PicViewActivity extends BaseActivity<PicViewPresenter> {
         return super.onOptionsItemSelected(item);
     }
 
+
     @OnClick(R2.id.iv_download)
     public void onClick() {
+        mPresenter.downloadFile(mUrl);
+    }
 
+    @Override
+    public void showDownloadSuccess() {
+        ToastUtils.showShort("保存成功");
     }
 }

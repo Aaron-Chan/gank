@@ -26,7 +26,7 @@ public class GirlsPresenter extends ListPresenter<GrilsView> {
     @Override
     protected void loadData(final int pageIndex) {
         mCompositeSubscription.add(DataModel.getInstance().getData(Constants.CATEGORY_WELFARE, getPageSize(), pageIndex)
-                .compose(RxUtils.<Response<List<GankEntity>>>getTransformer())
+                .compose(RxUtils.<Response<List<GankEntity>>>getDefaultTransformer())
                 .subscribe(new DefaultSubscriber<Response<List<GankEntity>>>() {
                     @Override
                     public void onSuccess(@NonNull Response<List<GankEntity>> listResponse) {

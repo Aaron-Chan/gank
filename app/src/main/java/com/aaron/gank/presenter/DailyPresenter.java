@@ -51,7 +51,7 @@ public class DailyPresenter extends ListPresenter<DailyView> {
         // 获取发布日期
         if (mPublishDates == null || mRefresh) {
             mCompositeSubscription.add(mDailyDataModel.getPublishDates()
-                    .compose(RxUtils.<Response<List<String>>>getTransformer())
+                    .compose(RxUtils.<Response<List<String>>>getDefaultTransformer())
                     .doOnCompleted(new Action0() {
                         @Override
                         public void call() {
@@ -96,7 +96,7 @@ public class DailyPresenter extends ListPresenter<DailyView> {
             mView.showLoadCompleted();
         } else {
             mCompositeSubscription.add(mDailyDataModel.getDailyData(getDates(pageIndex))
-                    .compose(RxUtils.<List<DailyData>>getTransformer())
+                    .compose(RxUtils.<List<DailyData>>getDefaultTransformer())
                     .map(new Func1<List<DailyData>, List<GankEntity>>() {
                         @Override
                         public List<GankEntity> call(List<DailyData> dailyDatas) {

@@ -8,10 +8,12 @@ import rx.schedulers.Schedulers;
  * Created by AaronChan on 2016/12/26.
  */
 public class RxUtils {
-    private static Observable.Transformer sTransformer;
+    private static Observable.Transformer sDefaultTransformer;
+    private static Observable.Transformer sIOTransformer;
 
     static {
-        sTransformer = createDefaultTransformer();
+        sDefaultTransformer = createDefaultTransformer();
+        sIOTransformer = createIOTransformer();
     }
 
     private RxUtils() {
@@ -27,8 +29,22 @@ public class RxUtils {
         };
     }
 
+    private static <T> Observable.Transformer<T, T> createIOTransformer() {
+        return new Observable.Transformer<T, T>() {
+            @Override
+            public Observable<T> call(Observable<T> tObservable) {
+                return tObservable.observeOn(Schedulers.io()).subscribeOn(Schedulers.io());
+            }
+        };
+    }
+
     @SuppressWarnings("unchecked")
-    public static <T> Observable.Transformer<T, T> getTransformer() {
-        return sTransformer;
+    public static <T> Observable.Transformer<T, T> getDefaultTransformer() {
+        return sDefaultTransformer;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> Observable.Transformer<T, T> getIOTransformer() {
+        return sIOTransformer;
     }
 }

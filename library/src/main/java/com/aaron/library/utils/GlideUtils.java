@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.aaron.library.R;
-import com.aaron.library.widget.GlideCircleTransform;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.SizeReadyCallback;
@@ -34,7 +33,6 @@ public class GlideUtils {
                 .override(width, height)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .dontAnimate()
-                .centerCrop()
                 .into(view)
                 .getSize(new SizeReadyCallback() {
                     @Override
@@ -54,7 +52,7 @@ public class GlideUtils {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(defaultImage)
                 .dontAnimate()
-                .centerCrop()
+                //.centerCrop()
                 .into(view)
                 .getSize(new SizeReadyCallback() {
                     @Override
@@ -93,15 +91,4 @@ public class GlideUtils {
 
     }
 
-
-    public static void displayCircleHeader(@NonNull ImageView view, @DrawableRes int res) {
-        Glide.with(view.getContext())
-                .load(res)
-                .centerCrop()
-                .placeholder(R.mipmap.img_default)
-                .bitmapTransform(new GlideCircleTransform(view.getContext()))
-                .crossFade()
-                .into(view);
-
-    }
 }

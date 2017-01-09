@@ -5,4 +5,5 @@ package com.aaron.library.view;
  */
 
 public interface PicView extends BaseView {
+    void showDownloadSuccess();
 }

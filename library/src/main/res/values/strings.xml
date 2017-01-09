@@ -10,4 +10,5 @@
     <string name="send_to">分享</string>
 
     <string name="pic_activity_transition_name">pic</string>
+    <string name="menu_pic_view_download">下载</string>
 </resources>
