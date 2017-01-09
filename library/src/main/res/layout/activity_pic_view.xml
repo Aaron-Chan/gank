@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?colorPrimaryDark"
+    android:background="@android:color/darker_gray"
     android:orientation="vertical"
     tools:context="com.aaron.library.activity.PicViewActivity">
 
@@ -23,13 +23,6 @@
             android:layout_height="match_parent"
             android:layout_centerInParent="true"/>
 
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/iv_download"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            app:srcCompat="@drawable/ic_file_download_black_24dp"/>
 
     </RelativeLayout>
 

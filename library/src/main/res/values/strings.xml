@@ -11,4 +11,10 @@
 
     <string name="pic_activity_transition_name">pic</string>
     <string name="menu_pic_view_download">下载</string>
+    <string name="toast_save_pic_failed">保存失败</string>
+    <string name="toast_save_pic_success">保存成功</string>
+    <string name="dialog_message_save_pic">是否保存图片</string>
+    <string name="status_view_load_failed">加载失败,点击重试</string>
+    <string name="status_view_loading">正在加载...</string>
+    <string name="status_view_empty">无数据</string>
 </resources>

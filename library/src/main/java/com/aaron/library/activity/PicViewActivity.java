@@ -2,11 +2,13 @@ package com.aaron.library.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,7 +21,6 @@ import com.aaron.library.utils.ToastUtils;
 import com.aaron.library.view.PicView;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class PicViewActivity extends BaseActivity<PicViewPresenter> implements PicView {
@@ -83,10 +84,21 @@ public class PicViewActivity extends BaseActivity<PicViewPresenter> implements P
         mAttacher.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                return false;
+
+                new AlertDialog.Builder(PicViewActivity.this)
+                        .setMessage(R.string.dialog_message_save_pic)
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                mPresenter.downloadFile(mUrl);
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, null)
+                        .show();
+
+                return true;
             }
         });
-
         ViewCompat.setTransitionName(mPhotoView, getString(R.string.pic_activity_transition_name));
         GlideUtils.loadImage(mPhotoView, mUrl);
     }
@@ -98,7 +110,7 @@ public class PicViewActivity extends BaseActivity<PicViewPresenter> implements P
 
     @Override
     public void showError(String errorMsg) {
-        ToastUtils.showShort("保存失败");
+        ToastUtils.showShort(R.string.toast_save_pic_failed);
     }
 
     @Override
@@ -111,13 +123,8 @@ public class PicViewActivity extends BaseActivity<PicViewPresenter> implements P
     }
 
 
-    @OnClick(R2.id.iv_download)
-    public void onClick() {
-        mPresenter.downloadFile(mUrl);
-    }
-
     @Override
     public void showDownloadSuccess() {
-        ToastUtils.showShort("保存成功");
+        ToastUtils.showShort(R.string.toast_save_pic_success);
     }
 }
