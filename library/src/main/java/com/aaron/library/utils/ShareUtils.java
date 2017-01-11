@@ -11,6 +11,9 @@ import com.aaron.library.R;
  */
 
 public class ShareUtils {
+    private ShareUtils() {
+        throw new IllegalAccessError();
+    }
 
     public static void shareImage(Context context, Uri uri, String title) {
         Intent shareIntent = new Intent();

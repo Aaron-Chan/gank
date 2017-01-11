@@ -12,6 +12,10 @@ import java.io.File;
 
 public class FileUtils {
 
+    private FileUtils() {
+        throw new IllegalAccessError();
+    }
+
     /**
      * 得到手机的缓存目录
      *

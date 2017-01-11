@@ -8,10 +8,17 @@ import java.util.Locale;
 /**
  * Created by Aaron on 2017/1/5.
  */
-
 public class DateUtils {
 
-    public static SimpleDateFormat sFormatDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    private DateUtils() {
+        throw new IllegalAccessError();
+    }
+
+    private static final SimpleDateFormat DEFAULT_DATE_FORMAT;
+
+    static {
+        DEFAULT_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    }
 
     /**
      * String 转换 Date
@@ -36,7 +43,7 @@ public class DateUtils {
      * @return 年月日
      */
     public static String formatDate(Date date) {
-        return sFormatDate.format(date);
+        return DEFAULT_DATE_FORMAT.format(date);
     }
 
 }

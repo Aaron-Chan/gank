@@ -14,6 +14,10 @@ import com.aaron.library.AaronApplication;
 
 public class ClipboardUtils {
 
+    private ClipboardUtils() {
+        throw new IllegalAccessError();
+    }
+
     /**
      * 复制文本到剪贴板
      *

@@ -17,7 +17,7 @@ public class RxUtils {
     }
 
     private RxUtils() {
-
+        throw new IllegalAccessError();
     }
 
     private static <T> Observable.Transformer<T, T> createDefaultTransformer() {

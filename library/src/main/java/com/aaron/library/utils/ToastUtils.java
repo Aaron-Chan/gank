@@ -17,11 +17,12 @@ public class ToastUtils {
     private static Context sContext;
 
     private ToastUtils() {
+        throw new IllegalAccessError();
     }
 
     public static void init(Context context) {
         if (!(context instanceof Application)) {
-            throw new RuntimeException("context must be instanceof Application");
+            throw new IllegalArgumentException("context must be instanceof Application");
         }
         sContext = context;
     }

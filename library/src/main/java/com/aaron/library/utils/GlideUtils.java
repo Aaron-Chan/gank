@@ -16,6 +16,9 @@ import com.bumptech.glide.request.target.SizeReadyCallback;
 
 public class GlideUtils {
 
+    private GlideUtils() {
+        throw new IllegalAccessError();
+    }
 
     /**
      * 加载网络图片
