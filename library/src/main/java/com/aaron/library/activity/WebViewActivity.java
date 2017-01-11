@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -28,6 +29,8 @@ public abstract class WebViewActivity extends BaseActivity {
     ProgressBar mProgressBar;
     @BindView(R2.id.webView)
     WebView mWebView;
+    @BindView(R2.id.activity_web_view)
+    ViewGroup mRootView;
 
     private static final String ARG_URL = "url";
     private static final String ARG_TITLE = "title";
@@ -150,10 +153,16 @@ public abstract class WebViewActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // 避免内存泄露
+        mRootView.removeAllViews();
         if (mWebView != null) {
+            mWebView.clearHistory();
+            mWebView.loadUrl("about:blank");
+            mWebView.pauseTimers();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                 mWebView.destroy();
             }
+            mWebView = null;
         }
     }
 
@@ -200,7 +209,7 @@ public abstract class WebViewActivity extends BaseActivity {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             if (newProgress == 0) {
-                loadStart();
+                onPageLoadStarted();
             } else if (newProgress > 90) {
                 mProgressBar.setVisibility(View.GONE);
             } else {
@@ -215,7 +224,7 @@ public abstract class WebViewActivity extends BaseActivity {
         }
     }
 
-    protected abstract void loadStart();
+    protected abstract void onPageLoadStarted();
 
     protected abstract void onPageLoadFinished(WebView view, String url);
 
