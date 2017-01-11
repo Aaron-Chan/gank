@@ -17,6 +17,7 @@ public class App extends AaronApplication {
 
         Logger.init("Gank");
         MultiypeItemProvider.register();
+        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
     }
 
 

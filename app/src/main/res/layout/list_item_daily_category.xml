@@ -6,7 +6,10 @@
     android:layout_height="48dp"
     android:paddingRight="16dp"
     android:paddingLeft="16dp"
+    android:background="?attr/contentItemBackground"
     android:gravity="center_vertical"
     android:textSize="14sp"
-    android:textStyle="bold"/>
+    style="@style/content_item_text"
+    android:textStyle="bold"
+   />
 

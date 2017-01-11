@@ -101,6 +101,9 @@ public class PicViewActivity extends BaseActivity<PicViewPresenter> implements P
         });
         ViewCompat.setTransitionName(mPhotoView, getString(R.string.pic_activity_transition_name));
         GlideUtils.loadImage(mPhotoView, mUrl);
+//        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mPhotoView.getLayoutParams();
+//        layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT,RelativeLayout.TRUE);
+//        mPhotoView.setLayoutParams(layoutParams);
     }
 
 
@@ -127,4 +130,5 @@ public class PicViewActivity extends BaseActivity<PicViewPresenter> implements P
     public void showDownloadSuccess() {
         ToastUtils.showShort(R.string.toast_save_pic_success);
     }
+
 }

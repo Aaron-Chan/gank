@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabBackground="?attr/colorPrimary"
+        app:tabTextColor="?attr/contentItemTextColor"
         app:tabGravity="fill"
         app:tabIndicatorHeight="2dp"
         app:tabMode="scrollable"/>

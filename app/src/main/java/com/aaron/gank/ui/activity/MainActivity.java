@@ -55,6 +55,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        changeTheme();
         mFragmentManager = getSupportFragmentManager();
 
         mCurrentFragment = mFragmentManager.findFragmentById(R.id.fl_content);
@@ -74,8 +75,19 @@ public class MainActivity extends BaseActivity {
         transaction.show(mCurrentFragment).commitAllowingStateLoss();
     }
 
+    private void changeTheme() {
+        boolean nightMode = SharePrefUtils.getBoolean(MainActivity.this, Constants.SP_KEY_NIGHT_MODE, false);
+        setTheme(nightMode ? R.style.NightTheme : R.style.AppTheme);
+    }
+
     @Override
     protected void initData() {
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
 
     }
 
@@ -87,7 +99,8 @@ public class MainActivity extends BaseActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 //toggle check state
-                item.setChecked(!item.isChecked());
+                boolean checked = !item.isChecked();
+                item.setChecked(checked);
                 //close drawer
                 mDrawerLayout.closeDrawers();
                 switch (item.getItemId()) {
@@ -96,9 +109,10 @@ public class MainActivity extends BaseActivity {
                         break;
                     case R.id.menu_item_night_mode:
                         //
-                        SharePrefUtils.putBoolean(MainActivity.this, Constants.SP_KEY_NIGHT_MODE, item.isChecked());
-                        // 切换夜间模式
-                        toggleNightMode(item);
+                        boolean nightMode = SharePrefUtils.getBoolean(MainActivity.this, Constants.SP_KEY_NIGHT_MODE, false);
+                        SharePrefUtils.putBoolean(MainActivity.this, Constants.SP_KEY_NIGHT_MODE, !nightMode);
+                        item.setChecked(!nightMode);
+                        recreate();
 
                         break;
                 }
@@ -131,11 +145,24 @@ public class MainActivity extends BaseActivity {
     }
 
     private void toggleNightMode(@NonNull MenuItem item) {
+//        int mode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+//
+//        if(mode == Configuration.UI_MODE_NIGHT_YES) {
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//        } else if(mode == Configuration.UI_MODE_NIGHT_NO) {
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//        } else {
+//            // blah blah
+//        }
+//
+//        recreate();
+
         if (item.isChecked()) {
             setTheme(R.style.NightTheme);
         } else {
             setTheme(R.style.AppTheme);
         }
+        refreshUI();
     }
 
     private void switchFragment(Class<?> fragmentClass) {
@@ -180,8 +207,9 @@ public class MainActivity extends BaseActivity {
         TypedValue background = new TypedValue();//背景色
         TypedValue textColor = new TypedValue();//字体颜色
         Resources.Theme theme = getTheme();
-        theme.resolveAttribute(R.attr.clockBackground, background, true);
-        theme.resolveAttribute(R.attr.clockTextColor, textColor, true);
+        theme.resolveAttribute(R.attr.contentItemBackground, background, true);
+        theme.resolveAttribute(R.attr.contentItemTextColor, textColor, true);
+
 
 //        mHeaderLayout.setBackgroundResource(background.resourceId);
 //        for (RelativeLayout layout : mLayoutList) {
@@ -238,6 +266,8 @@ public class MainActivity extends BaseActivity {
 //        }
 
         refreshStatusBar();
+
+        recreate();
     }
 
     /**

@@ -3,6 +3,7 @@
 
     <item
         android:id="@+id/menu_item_about"
+
         android:title="@string/navigation_about"/>
     <item
         android:id="@+id/menu_item_night_mode"
