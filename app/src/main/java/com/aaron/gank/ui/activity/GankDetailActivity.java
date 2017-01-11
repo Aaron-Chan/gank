@@ -7,7 +7,7 @@ import com.aaron.library.activity.WebViewActivity;
 public class GankDetailActivity extends WebViewActivity {
 
     @Override
-    protected void loadStart() {
+    protected void onPageLoadStarted() {
         // do nothing
     }
 

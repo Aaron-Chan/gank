@@ -3,8 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="AppThemeBase">
         <!-- Customize your theme here. -->
-        <item name="android:windowContentTransitions">true</item><!--支持共享控件--><!--半透明-->
-
+        <item name="android:windowContentTransitions">true</item><!--支持共享控件-->
         <item name="android:windowAllowEnterTransitionOverlap">true</item>
         <item name="android:windowAllowReturnTransitionOverlap">true</item>
         <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>

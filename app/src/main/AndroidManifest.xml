@@ -29,6 +29,25 @@
 
         <activity android:name="com.aaron.library.activity.PicViewActivity">
         </activity>
+
+        <!--umeng start-->
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="587592dda32511077f0004c9"/>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${ChannelValue}"/>
+
+        <service
+            android:name="com.umeng.update.net.DownloadingService"
+            android:process=":DownloadingService">
+        </service>
+        <activity
+            android:name="com.umeng.update.UpdateDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+        </activity>
+        <!--umeng end-->
     </application>
 
 </manifest>

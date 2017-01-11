@@ -5,7 +5,6 @@ import android.content.Context;
 
 import com.aaron.library.utils.ToastUtils;
 import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 
 /**
  * Created by AaronChan on 2017/1/8.
@@ -14,7 +13,6 @@ import com.squareup.leakcanary.RefWatcher;
 public class AaronApplication extends Application {
 
     public static Context sContext;
-    private RefWatcher refWatcher;
 
     @Override
     public void onCreate() {
@@ -23,11 +21,16 @@ public class AaronApplication extends Application {
 
         ToastUtils.init(sContext);
         // 内存泄露检查
-        refWatcher = LeakCanary.install(this);
+        initLeakCanary();
+
     }
 
-    public static RefWatcher getRefWatcher(Context context) {
-        AaronApplication application = (AaronApplication) context.getApplicationContext();
-        return application.refWatcher;
+    private void initLeakCanary() {
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
     }
 }

@@ -7,7 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.aaron.library.AaronApplication;
 import com.aaron.library.R;
 import com.aaron.library.presenter.BasePresenter;
 import com.aaron.library.view.BaseView;
@@ -40,8 +39,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // 检查内存泄露
-        AaronApplication.getRefWatcher(this).watch(this);
+
     }
 
     protected abstract void init(Bundle savedInstanceState);

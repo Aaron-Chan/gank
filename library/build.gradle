@@ -47,5 +47,6 @@ dependencies {
     // 内存泄漏检查
     debugCompile rootProject.ext.dependencies["leakcanaryDebug"]
     releaseCompile rootProject.ext.dependencies["leakcanaryRelease"]
+    testCompile rootProject.ext.dependencies["leakcanaryTest"]
 
 }

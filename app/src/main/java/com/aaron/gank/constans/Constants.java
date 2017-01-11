@@ -17,5 +17,7 @@ public class Constants {
     public static String CATEGORY_RECOMMEND = "瞎推荐";
     public static String CATEGORY_WELFARE = "福利";
 
+    public static String SP_KEY_NIGHT_MODE = "night_mode";
+
 
 }

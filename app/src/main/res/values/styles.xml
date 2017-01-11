@@ -5,10 +5,21 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="clockBackground">@android:color/white</item>
+        <item name="clockTextColor">@android:color/black</item>
     </style>
 
     <style name="AppTheme" parent="AppThemeBase">
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="NightTheme" parent="AppThemeBase">
+        <item name="colorPrimary">@color/night_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/night_colorPrimaryDark</item>
+        <item name="colorAccent">@color/night_colorAccent</item>
+        <item name="clockBackground">@color/night_clockBackground</item>
+        <item name="clockTextColor">@color/night_clockTextColor</item>
+
     </style>
 
 </resources>

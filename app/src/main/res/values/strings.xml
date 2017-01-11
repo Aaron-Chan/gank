@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">干货</string>
+    <string name="app_name">来点干货</string>
 
     <string name="navigation_home">主页</string>
     <string name="navigation_girl">妹纸</string>
@@ -7,8 +7,7 @@
     <string name="navigation_header">导航头像</string>
 
     <string name="navigation_about">关于</string>
-
-
+    <string name="navigation_night_mode">夜间模式</string>
 
 
 </resources>
