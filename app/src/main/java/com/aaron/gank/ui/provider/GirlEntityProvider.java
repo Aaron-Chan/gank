@@ -1,6 +1,5 @@
 package com.aaron.gank.ui.provider;
 
-import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +35,7 @@ public class GirlEntityProvider extends ItemViewProvider<GankEntity, VH> {
             @Override
             public void onClick(View v) {
                 String date = DateUtils.formatDate(gankEntity.getPublishedAt());
-                PicViewActivity.open((Activity) v.getContext(), gankEntity.getUrl(), date, v);
+                PicViewActivity.open(v.getContext(), gankEntity.getUrl(), date, v);
             }
         });
     }

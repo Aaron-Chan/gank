@@ -1,6 +1,5 @@
 package com.aaron.gank.ui.provider;
 
-import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +38,7 @@ public class GankImageEntityProvider extends ItemViewProvider<GankEntity, VH> {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PicViewActivity.open((Activity) v.getContext(), imageUrl, gankImageEntity.getDesc(), v);
+                PicViewActivity.open( v.getContext(), imageUrl, gankImageEntity.getDesc(), v);
             }
         });
         holder.itemView.setOnClickListener(new View.OnClickListener() {

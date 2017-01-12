@@ -39,7 +39,8 @@ public class DailyHeaderProvider extends ItemViewProvider<DailyHeader, VH> {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PicViewActivity.open((Activity) v.getContext(), dailyHeader.getImgUrl(), date, v);
+
+                    PicViewActivity.open( v.getContext(), dailyHeader.getImgUrl(), date, v);
             }
         });
     }

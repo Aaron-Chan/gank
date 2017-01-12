@@ -1,13 +1,11 @@
 package com.aaron.library.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,9 +14,9 @@ import android.widget.ImageView;
 import com.aaron.library.R;
 import com.aaron.library.R2;
 import com.aaron.library.presenter.PicViewPresenter;
-import com.aaron.library.utils.GlideUtils;
 import com.aaron.library.utils.ToastUtils;
 import com.aaron.library.view.PicView;
+import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import uk.co.senab.photoview.PhotoViewAttacher;
@@ -35,20 +33,20 @@ public class PicViewActivity extends BaseActivity<PicViewPresenter> implements P
     private PhotoViewAttacher mAttacher;
 
 
-    public static void open(Activity activity, String url, String title) {
-        activity.startActivity(createIntent(activity, url, title));
+    public static void open(Context context, String url, String title) {
+        context.startActivity(createIntent(context, url, title));
     }
 
-    public static void open(Activity activity, String url, String title, View view) {
-        Intent intent = createIntent(activity, url, title);
+    public static void open(Context context, String url, String title, View view) {
+        Intent intent = createIntent(context, url, title);
 
         // 共享控件
-        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.
-                makeSceneTransitionAnimation(activity, view, activity.getString(R.string.pic_activity_transition_name));
+//        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.
+//                makeSceneTransitionAnimation(activity, view, activity.getString(R.string.pic_activity_transition_name));
 
-//        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeScaleUpAnimation(
-//                view, view.getWidth() / 2, view.getHeight() / 2, view.getWidth(), view.getHeight());
-        ActivityCompat.startActivity(activity, intent, activityOptionsCompat.toBundle());
+        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeScaleUpAnimation(
+                view, view.getWidth() / 2, view.getHeight() / 2, view.getWidth(), view.getHeight());
+        ActivityCompat.startActivity(context, intent, activityOptionsCompat.toBundle());
     }
 
     private static Intent createIntent(Context context, String url, String title) {
@@ -80,6 +78,12 @@ public class PicViewActivity extends BaseActivity<PicViewPresenter> implements P
     @Override
     protected void initViews() {
         setTitle(mTitle, true);
+
+//        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mPhotoView.getLayoutParams();
+//        layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT,RelativeLayout.TRUE);
+//        mPhotoView.setLayoutParams(layoutParams);
+//        mPhotoView.requestLayout();
+
         mAttacher = new PhotoViewAttacher(mPhotoView);
         mAttacher.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -99,11 +103,14 @@ public class PicViewActivity extends BaseActivity<PicViewPresenter> implements P
                 return true;
             }
         });
-        ViewCompat.setTransitionName(mPhotoView, getString(R.string.pic_activity_transition_name));
-        GlideUtils.loadImage(mPhotoView, mUrl);
-//        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mPhotoView.getLayoutParams();
-//        layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT,RelativeLayout.TRUE);
-//        mPhotoView.setLayoutParams(layoutParams);
+        // ViewCompat.setTransitionName(mPhotoView, getString(R.string.pic_activity_transition_name));
+        Glide.with(this)
+                .load(mUrl)
+                .dontAnimate()
+                .dontTransform()
+                .into(mPhotoView);
+        //GlideUtils.loadImage(mPhotoView, mUrl);
+
     }
 
 
@@ -118,13 +125,18 @@ public class PicViewActivity extends BaseActivity<PicViewPresenter> implements P
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            supportFinishAfterTransition();
-            return true;
-        }
+//        if (item.getItemId() == android.R.id.home) {
+//            supportFinishAfterTransition();
+//            return true;
+//        }
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        ActivityCompat.finishAfterTransition(this);
+    }
 
     @Override
     public void showDownloadSuccess() {
