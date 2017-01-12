@@ -2,6 +2,7 @@ package com.aaron.library.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
@@ -123,6 +124,11 @@ public abstract class WebViewActivity extends BaseActivity {
             return true;
         } else if (itemId == R.id.menu_item_share) {
             share();
+            return true;
+        } else if (itemId == R.id.menu_item_open_browser) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(mUrl));
+            startActivity(intent);
             return true;
         } else {
             return super.onOptionsItemSelected(item);

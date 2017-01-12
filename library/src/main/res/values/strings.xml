@@ -17,4 +17,5 @@
     <string name="status_view_load_failed">加载失败,点击重试</string>
     <string name="status_view_loading">正在加载...</string>
     <string name="status_view_empty">无数据</string>
+    <string name="menu_web_open_browser">用浏览器打开</string>
 </resources>
