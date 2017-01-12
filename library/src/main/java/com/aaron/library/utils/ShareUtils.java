@@ -11,6 +11,7 @@ import com.aaron.library.R;
  */
 
 public class ShareUtils {
+
     private ShareUtils() {
         throw new IllegalAccessError();
     }
