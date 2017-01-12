@@ -55,7 +55,6 @@ public class GlideUtils {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(defaultImage)
                 .dontAnimate()
-                //.centerCrop()
                 .into(view)
                 .getSize(new SizeReadyCallback() {
                     @Override

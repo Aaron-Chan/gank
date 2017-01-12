@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     android:id="@+id/activity_pic_view"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,21 +9,16 @@
     android:orientation="vertical"
     tools:context="com.aaron.library.activity.PicViewActivity">
 
-    <include layout="@layout/common_toolbar"/>
+    <include
+        android:id="@+id/app_bar_layout"
+        layout="@layout/common_toolbar"/>
 
-    <RelativeLayout
+    <uk.co.senab.photoview.PhotoView
+        android:layout_below="@id/app_bar_layout"
+        android:id="@+id/photoView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_centerInParent="true"
+        />
 
-        <ImageView
-            android:id="@+id/photoView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"/>
-
-
-    </RelativeLayout>
-
-
-</LinearLayout>
+</RelativeLayout>

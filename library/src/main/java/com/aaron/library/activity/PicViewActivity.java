@@ -7,19 +7,17 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AlertDialog;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.aaron.library.R;
 import com.aaron.library.R2;
 import com.aaron.library.presenter.PicViewPresenter;
+import com.aaron.library.utils.GlideUtils;
 import com.aaron.library.utils.ToastUtils;
 import com.aaron.library.view.PicView;
-import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
-import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class PicViewActivity extends BaseActivity<PicViewPresenter> implements PicView {
 
@@ -30,7 +28,6 @@ public class PicViewActivity extends BaseActivity<PicViewPresenter> implements P
     ImageView mPhotoView;
     private String mUrl;
     private String mTitle;
-    private PhotoViewAttacher mAttacher;
 
 
     public static void open(Context context, String url, String title) {
@@ -39,12 +36,9 @@ public class PicViewActivity extends BaseActivity<PicViewPresenter> implements P
 
     public static void open(Context context, String url, String title, View view) {
         Intent intent = createIntent(context, url, title);
-
         // 共享控件
-//        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.
-//                makeSceneTransitionAnimation(activity, view, activity.getString(R.string.pic_activity_transition_name));
-
-        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeScaleUpAnimation(
+        ActivityOptionsCompat activityOptionsCompat;
+        activityOptionsCompat = ActivityOptionsCompat.makeScaleUpAnimation(
                 view, view.getWidth() / 2, view.getHeight() / 2, view.getWidth(), view.getHeight());
         ActivityCompat.startActivity(context, intent, activityOptionsCompat.toBundle());
     }
@@ -68,27 +62,13 @@ public class PicViewActivity extends BaseActivity<PicViewPresenter> implements P
         mPresenter = new PicViewPresenter(this);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mAttacher.cleanup();
-    }
-
 
     @Override
     protected void initViews() {
         setTitle(mTitle, true);
-
-//        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mPhotoView.getLayoutParams();
-//        layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT,RelativeLayout.TRUE);
-//        mPhotoView.setLayoutParams(layoutParams);
-//        mPhotoView.requestLayout();
-
-        mAttacher = new PhotoViewAttacher(mPhotoView);
-        mAttacher.setOnLongClickListener(new View.OnLongClickListener() {
+        mPhotoView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-
                 new AlertDialog.Builder(PicViewActivity.this)
                         .setMessage(R.string.dialog_message_save_pic)
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -99,18 +79,11 @@ public class PicViewActivity extends BaseActivity<PicViewPresenter> implements P
                         })
                         .setNegativeButton(android.R.string.no, null)
                         .show();
-
                 return true;
+
             }
         });
-        // ViewCompat.setTransitionName(mPhotoView, getString(R.string.pic_activity_transition_name));
-        Glide.with(this)
-                .load(mUrl)
-                .dontAnimate()
-                .dontTransform()
-                .into(mPhotoView);
-        //GlideUtils.loadImage(mPhotoView, mUrl);
-
+        GlideUtils.loadImage(mPhotoView, mUrl);
     }
 
 
@@ -121,15 +94,6 @@ public class PicViewActivity extends BaseActivity<PicViewPresenter> implements P
     @Override
     public void showError(String errorMsg) {
         ToastUtils.showShort(R.string.toast_save_pic_failed);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-//        if (item.getItemId() == android.R.id.home) {
-//            supportFinishAfterTransition();
-//            return true;
-//        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
