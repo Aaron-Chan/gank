@@ -86,6 +86,10 @@ public class PicViewActivity extends BaseActivity<PicViewPresenter> implements P
         GlideUtils.loadImage(mPhotoView, mUrl);
     }
 
+    @Override
+    protected boolean hasFragment() {
+        return false;
+    }
 
     protected int getLayoutId() {
         return R.layout.activity_pic_view;

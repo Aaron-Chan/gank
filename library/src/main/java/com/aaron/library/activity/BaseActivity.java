@@ -37,6 +37,26 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        // umeng 统计
+//        if (!hasFragment()) {
+//            MobclickAgent.onPageStart(getPageNameForAnalysis());
+//        }
+//        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // umeng 统计
+//        if (!hasFragment()) {
+//            MobclickAgent.onPageEnd(getPageNameForAnalysis());
+//        }
+//        MobclickAgent.onPause(this);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
 
@@ -47,6 +67,17 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected abstract void initData();
 
     protected abstract void initViews();
+
+    protected abstract boolean hasFragment();
+
+    /**
+     * 获取用户统计的页面名称
+     *
+     * @return 默认为类名
+     */
+    protected String getPageNameForAnalysis() {
+        return this.getClass().getName();
+    }
 
     //get content view resource id
     @LayoutRes

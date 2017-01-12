@@ -72,6 +72,7 @@ dependencies {
     // google扩展库
     compile rootProject.ext.dependencies["guava"]
 
+
     // 内存泄漏检查
     debugCompile rootProject.ext.dependencies["leakcanaryDebug"]
     releaseCompile rootProject.ext.dependencies["leakcanaryRelease"]

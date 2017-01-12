@@ -43,6 +43,8 @@ dependencies {
     compile(rootProject.ext.dependencies["multitype"], {
         exclude group: 'com.android.support'
     })
+    // umeng
+    compile rootProject.ext.dependencies["umengAnalytics"]
 
     // 内存泄漏检查
     debugCompile rootProject.ext.dependencies["leakcanaryDebug"]

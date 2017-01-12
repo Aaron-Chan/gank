@@ -1,7 +1,5 @@
 package com.aaron.gank.ui.activity;
 
-import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -11,7 +9,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -109,10 +106,10 @@ public class MainActivity extends BaseActivity {
                         break;
                     case R.id.menu_item_night_mode:
                         //
-                        boolean nightMode = SharePrefUtils.getBoolean(MainActivity.this, Constants.SP_KEY_NIGHT_MODE, false);
-                        SharePrefUtils.putBoolean(MainActivity.this, Constants.SP_KEY_NIGHT_MODE, !nightMode);
-                        item.setChecked(!nightMode);
-                        recreate();
+//                        boolean nightMode = SharePrefUtils.getBoolean(MainActivity.this, Constants.SP_KEY_NIGHT_MODE, false);
+//                        SharePrefUtils.putBoolean(MainActivity.this, Constants.SP_KEY_NIGHT_MODE, !nightMode);
+//                        item.setChecked(!nightMode);
+//                        recreate();
 
                         break;
                 }
@@ -144,6 +141,11 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+    @Override
+    protected boolean hasFragment() {
+        return true;
+    }
+
     private void toggleNightMode(@NonNull MenuItem item) {
 //        int mode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
 //
@@ -162,7 +164,6 @@ public class MainActivity extends BaseActivity {
         } else {
             setTheme(R.style.AppTheme);
         }
-        refreshUI();
     }
 
     private void switchFragment(Class<?> fragmentClass) {
@@ -197,88 +198,6 @@ public class MainActivity extends BaseActivity {
                 mIsGirlShown = false;
                 invalidateOptionsMenu();
             }
-        }
-    }
-
-    /**
-     * 刷新UI界面
-     */
-    private void refreshUI() {
-        TypedValue background = new TypedValue();//背景色
-        TypedValue textColor = new TypedValue();//字体颜色
-        Resources.Theme theme = getTheme();
-        theme.resolveAttribute(R.attr.contentItemBackground, background, true);
-        theme.resolveAttribute(R.attr.contentItemTextColor, textColor, true);
-
-
-//        mHeaderLayout.setBackgroundResource(background.resourceId);
-//        for (RelativeLayout layout : mLayoutList) {
-//            layout.setBackgroundResource(background.resourceId);
-//        }
-//        for (CheckBox checkBox : mCheckBoxList) {
-//            checkBox.setBackgroundResource(background.resourceId);
-//        }
-//        for (TextView textView : mTextViewList) {
-//            textView.setBackgroundResource(background.resourceId);
-//        }
-//
-//        Resources resources = getResources();
-//        for (TextView textView : mTextViewList) {
-//            textView.setTextColor(resources.getColor(textColor.resourceId));
-//        }
-//
-//        int childCount = mRecyclerView.getChildCount();
-//        for (int childIndex = 0; childIndex < childCount; childIndex++) {
-//            ViewGroup childView = (ViewGroup) mRecyclerView.getChildAt(childIndex);
-//            childView.setBackgroundResource(background.resourceId);
-//            View infoLayout = childView.findViewById(R.id.info_layout);
-//            infoLayout.setBackgroundResource(background.resourceId);
-//            TextView nickName = (TextView) childView.findViewById(R.id.tv_nickname);
-//            nickName.setBackgroundResource(background.resourceId);
-//            nickName.setTextColor(resources.getColor(textColor.resourceId));
-//            TextView motto = (TextView) childView.findViewById(R.id.tv_motto);
-//            motto.setBackgroundResource(background.resourceId);
-//            motto.setTextColor(resources.getColor(textColor.resourceId));
-//        }
-//
-//        //让 RecyclerView 缓存在 Pool 中的 Item 失效
-//        //那么，如果是ListView，要怎么做呢？这里的思路是通过反射拿到 AbsListView 类中的 RecycleBin 对象，然后同样再用反射去调用 clear 方法
-//        Class<RecyclerView> recyclerViewClass = RecyclerView.class;
-//        try {
-//            Field declaredField = recyclerViewClass.getDeclaredField("mRecycler");
-//            declaredField.setAccessible(true);
-//            Method declaredMethod = Class.forName(RecyclerView.Recycler.class.getName()).getDeclaredMethod("clear", (Class<?>[]) new Class[0]);
-//            declaredMethod.setAccessible(true);
-//            declaredMethod.invoke(declaredField.get(mRecyclerView), new Object[0]);
-//            RecyclerView.RecycledViewPool recycledViewPool = mRecyclerView.getRecycledViewPool();
-//            recycledViewPool.clear();
-//
-//        } catch (NoSuchFieldException e) {
-//            e.printStackTrace();
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (NoSuchMethodException e) {
-//            e.printStackTrace();
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        }
-
-        refreshStatusBar();
-
-        recreate();
-    }
-
-    /**
-     * 刷新 StatusBar
-     */
-    private void refreshStatusBar() {
-        if (Build.VERSION.SDK_INT >= 21) {
-            TypedValue typedValue = new TypedValue();
-            Resources.Theme theme = getTheme();
-            theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
-            getWindow().setStatusBarColor(getResources().getColor(typedValue.resourceId));
         }
     }
 

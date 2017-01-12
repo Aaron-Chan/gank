@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.aaron.library.utils.ToastUtils;
 import com.squareup.leakcanary.LeakCanary;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by AaronChan on 2017/1/8.
@@ -22,6 +23,8 @@ public class AaronApplication extends Application {
         ToastUtils.init(sContext);
         // 内存泄露检查
         initLeakCanary();
+        // umeng 禁止默认的页面统计方式
+        MobclickAgent.openActivityDurationTrack(false);
 
     }
 

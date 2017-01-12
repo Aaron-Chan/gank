@@ -28,10 +28,30 @@ public abstract class BaseFragment extends Fragment {
         return mContentView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+      //  MobclickAgent.onPageStart(getPageNameForAnalysis());
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+     //   MobclickAgent.onPageEnd(getPageNameForAnalysis());
+    }
 
     protected abstract void initData();
 
     protected abstract void initViews();
+
+    /**
+     * 获取用户统计的页面名称
+     *
+     * @return 默认为类名
+     */
+    protected String getPageNameForAnalysis() {
+        return this.getClass().getName();
+    }
 
     //get content view resource id
     abstract protected int getLayoutId();

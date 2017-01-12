@@ -27,7 +27,8 @@ ext {
                     "multitype"           : "me.drakeet.multitype:multitype:2.3.0",
                     "photoView"           : "com.github.chrisbanes:PhotoView:1.2.6",
                     "leakcanaryRelease"   : "com.squareup.leakcanary:leakcanary-android-no-op:1.5",
-                    "leakcanaryTest"   : "com.squareup.leakcanary:leakcanary-android-no-op:1.5",
+                    "leakcanaryTest"      : "com.squareup.leakcanary:leakcanary-android-no-op:1.5",
                     "leakcanaryDebug"     : "com.squareup.leakcanary:leakcanary-android:1.5",
+                    "umengAnalytics"      : "com.umeng.analytics:analytics:latest.integration",
                     "glide"               : "com.github.bumptech.glide:glide:3.7.0"]
 }
