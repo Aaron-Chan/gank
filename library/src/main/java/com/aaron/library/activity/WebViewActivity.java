@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
@@ -19,6 +20,7 @@ import android.widget.ProgressBar;
 import com.aaron.library.R;
 import com.aaron.library.R2;
 import com.aaron.library.utils.ClipboardUtils;
+import com.aaron.library.utils.PocketUtils;
 import com.aaron.library.utils.ShareUtils;
 import com.orhanobut.logger.Logger;
 
@@ -113,22 +115,32 @@ public abstract class WebViewActivity extends BaseActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // 设置pocket保存item是否显示
+        menu.findItem(R.id.menu_item_save_pocket)
+                .setVisible(PocketUtils.isPocketInstalled(this));
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
-        if (itemId == R.id.menu_item_copy_url) {
-            // 复制链接
+        if (itemId == R.id.menu_item_copy_url) {            // 复制链接
             copyUrl();
             return true;
-        } else if (itemId == R.id.menu_item_reload) {
+        } else if (itemId == R.id.menu_item_reload) {       // 重新加载
             mWebView.loadUrl(mUrl);
             return true;
         } else if (itemId == R.id.menu_item_share) {
             share();
             return true;
-        } else if (itemId == R.id.menu_item_open_browser) {
+        } else if (itemId == R.id.menu_item_open_browser) { // 用浏览器打开
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(mUrl));
             startActivity(intent);
+            return true;
+        } else if (itemId == R.id.menu_item_save_pocket) { // 保存到pocket
+            PocketUtils.addToPocket(this, mWebView.getUrl());
             return true;
         } else {
             return super.onOptionsItemSelected(item);

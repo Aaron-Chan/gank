@@ -18,4 +18,5 @@
     <string name="status_view_loading">正在加载...</string>
     <string name="status_view_empty">无数据</string>
     <string name="menu_web_open_browser">用浏览器打开</string>
+    <string name="menu_web_save_to_pocket">保存到pocket</string>
 </resources>
