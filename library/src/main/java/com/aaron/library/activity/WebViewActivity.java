@@ -174,6 +174,7 @@ public abstract class WebViewActivity extends BaseActivity {
         // 避免内存泄露
         mRootView.removeAllViews();
         if (mWebView != null) {
+            mWebView.removeAllViews();
             mWebView.clearHistory();
             mWebView.loadUrl("about:blank");
             mWebView.pauseTimers();

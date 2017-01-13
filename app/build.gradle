@@ -17,6 +17,12 @@ android {
     signingConfigs {
         //指定名叫release的一个签名对象 会在下面的脚本(85行开始)中，动态根据配置文件设置属性
         release
+//        release {
+//            storeFile file("WuXiaolong.jks")
+//            storePassword 'android'
+//            keyAlias 'android'
+//            keyPassword 'android'
+//        }
     }
 
     buildTypes {
@@ -136,4 +142,5 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.github.medyo:android-about-page:1.1.1'
 }

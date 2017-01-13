@@ -1,5 +1,6 @@
 package com.aaron.gank.ui.activity;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -11,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.aaron.gank.R;
@@ -26,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import mehdi.sakout.aboutpage.AboutPage;
 
 public class MainActivity extends BaseActivity {
 
@@ -103,6 +106,24 @@ public class MainActivity extends BaseActivity {
                 switch (item.getItemId()) {
                     case R.id.menu_item_about:
                         //
+                        Dialog dialog = new Dialog(MainActivity.this);
+                        View view = new AboutPage(MainActivity.this)
+                                .addGitHub("https://github.com/aaron-chan")
+                                .addEmail("xiaochenginscnu@foxmail.com")
+                                .setDescription("来点干货 使用干货集中营(gank.io)提供的api，采用MVP模式实现模块化编程，减少代码耦合，UI上尽可能做到遵循Google的MaterialDesign风格。\n" +
+                                        "    主要框架：\n" +
+                                        "                RxJava,\n" +
+                                        "                Glide,\n" +
+                                        "                Retrofit,\n" +
+                                        "                ButterKnife，\n" +
+                                        "                gson。\n" +
+                                        "    如果有任何问题，请到 https://github.com/aaron-chan/gank/issues 提出。\n" +
+                                        "                感谢代码家")
+                                .addWebsite("https://aaron-chan.github.io")
+                                .setImage(R.mipmap.img_navigation_header)
+                                .create();
+                        dialog.setContentView(view);
+                        dialog.show();
                         break;
                     case R.id.menu_item_night_mode:
                         //
