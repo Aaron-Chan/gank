@@ -25,21 +25,19 @@
 -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@android:id/background">
+
         <shape>
-            <corners android:radius="5dip" />
-            <gradient
-                android:endColor="@android:color/white"
-                android:startColor="@android:color/white" />
+            <solid android:color="@android:color/white"/>
         </shape>
     </item>
 
     <item android:id="@android:id/progress">
         <clip>
             <shape>
-                <corners android:radius="5dip" />
+                <corners android:radius="5dip"/>
                 <gradient
                     android:endColor="?attr/colorPrimary"
-                    android:startColor="?attr/colorPrimary" />
+                    android:startColor="?attr/colorPrimary"/>
             </shape>
         </clip>
     </item>

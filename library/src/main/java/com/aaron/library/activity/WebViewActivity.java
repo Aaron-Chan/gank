@@ -9,7 +9,6 @@ import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -21,6 +20,7 @@ import com.aaron.library.R;
 import com.aaron.library.R2;
 import com.aaron.library.utils.ClipboardUtils;
 import com.aaron.library.utils.ShareUtils;
+import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
 
@@ -214,12 +214,19 @@ public abstract class WebViewActivity extends BaseActivity {
 
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
-            if (newProgress == 0) {
-                onPageLoadStarted();
-            } else if (newProgress > 90) {
-                mProgressBar.setVisibility(View.GONE);
-            } else {
-                mProgressBar.setVisibility(View.VISIBLE);
+            Logger.d("progress " + newProgress);
+            if (newProgress < 100 && mProgressBar.getVisibility() == ProgressBar.GONE) {
+                mProgressBar.setVisibility(ProgressBar.VISIBLE);
+            }
+            mProgressBar.setProgress(newProgress);
+            if (newProgress == 100) {
+                mProgressBar.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mProgressBar.setVisibility(ProgressBar.GONE);
+                    }
+                }, 100);
+
             }
         }
 
