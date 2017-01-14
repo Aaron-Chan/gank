@@ -10,6 +10,12 @@
     <string name="navigation_night_mode">夜间模式</string>
 
     <string name="menu_item_display_mode">显示模式</string>
+    <string name="about_app_description">\t项目地址：https://github.com/Aaron-Chan/gank \n \t来点干货使用干货集中营(gank.io)提供的api，采用MVP模式实现模块化编程，减少代码耦合，UI上尽可能遵循Google的MaterialDesign风格。\n\t主要框架：RxJava，Glide，Retrofit，ButterKnife和Gson。\n\t如有任何问题建议，欢迎到 https://github.com/aaron-chan/gank/issues 反馈。 \n\t感谢代码家(https://github.com/daimajia)</string>
+    <string name="about_blog">https://aaron-chan.github.io</string>
+    <string name="about_me_github">https://github.com/aaron-chan</string>
+    <string name="about_email">xiaochenginscnu@foxmail.com</string>
+    <string name="about_qq">1903682265</string>
+    <string name="about_me_info">AaronChan 坐标深圳</string>
 
 
 </resources>

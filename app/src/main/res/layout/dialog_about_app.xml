@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
@@ -7,11 +8,15 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -22,38 +27,100 @@
                 android:src="@mipmap/img_navigation_header"/>
 
 
-
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Android程序员，坐标深圳"/>
 
-            <TextView
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:autoLink="web"
-                android:drawableLeft="@mipmap/blog"
-                android:drawablePadding="10dp"
-                android:text="https://aaron-chan.github.io"/>
+                android:text="@string/about_me_info"/>
 
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autoLink="web"
-                android:drawableLeft="@mipmap/github_mark_32x32"
-                android:drawablePadding="10dp"
-                android:text="https://github.com/aaron-chan"/>
+                android:orientation="horizontal">
 
-            <TextView
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:srcCompat="@drawable/ic_blog"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:autoLink="web"
+                    android:gravity="start"
+                    android:text="@string/about_blog"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autoLink="email"
-                android:drawableLeft="@drawable/ic_mail_black_24dp"
-                android:drawablePadding="10dp"
-                android:text="xiaochenginscnu@foxmail.com"/>
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:srcCompat="@drawable/ic_github"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:autoLink="web"
+                    android:gravity="start"
+                    android:text="@string/about_me_github"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:srcCompat="@drawable/ic_mail_black_24dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:autoLink="email"
+                    android:gravity="start"
+                    android:text="@string/about_email"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="2dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:srcCompat="@drawable/ic_qq"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:gravity="start"
+                    android:text="@string/about_qq"/>
+
+            </LinearLayout>
+
         </LinearLayout>
 
 
@@ -63,36 +130,30 @@
     <android.support.v7.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp">
 
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:padding="8dp"
+                android:text="@string/app_name"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:paddingBottom="2dp"
+                android:layout_height="wrap_content"
                 android:autoLink="web"
-                android:drawablePadding="10dp"
-                android:text="https://github.com/Aaron-Chan/gank"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="
-    来点干货 使用干货集中营(gank.io)提供的api，采用MVP模式实现模块化编程，减少代码耦合，UI上尽可能做到遵循Google的MaterialDesign风格。
-    主要框架：
-                RxJava,
-                Glide,
-                Retrofit,
-                ButterKnife，
-                gson。
-    如果有任何问题，请到 https://github.com/aaron-chan/gank/issues 提出。
-                感谢代码家
-                "/>
+                android:text="@string/about_app_description"/>
 
 
         </android.support.v7.widget.LinearLayoutCompat>

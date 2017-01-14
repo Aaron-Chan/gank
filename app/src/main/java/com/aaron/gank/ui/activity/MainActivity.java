@@ -33,7 +33,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import mehdi.sakout.aboutpage.AboutPage;
 
 public class MainActivity extends BaseActivity {
 
@@ -50,7 +49,6 @@ public class MainActivity extends BaseActivity {
     private Fragment mCurrentFragment;
     private Map<String, Fragment> mFragmentMap = new HashMap<>();
     private boolean mIsGirlShown;
-    private SwitchCompat mNightModeSwitchCompat;
 
 
     @Override
@@ -79,6 +77,7 @@ public class MainActivity extends BaseActivity {
         }
         //避免当state丢失时抛出异常
         transaction.show(mCurrentFragment).commitAllowingStateLoss();
+
     }
 
     private void changeTheme() {
@@ -99,19 +98,20 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-        mNightModeSwitchCompat = new SwitchCompat(this);
+        // 加入夜间模式的Switch
+        SwitchCompat nightModeSwitchCompat = new SwitchCompat(this);
         boolean nightMode = SharePrefUtils.getBoolean(MainActivity.this, Constants.SP_KEY_NIGHT_MODE, false);
-        mNightModeSwitchCompat.setChecked(nightMode);
-        mNightModeSwitchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        nightModeSwitchCompat.setChecked(nightMode);
+        nightModeSwitchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 SharePrefUtils.putBoolean(MainActivity.this, Constants.SP_KEY_NIGHT_MODE, isChecked);
                 recreate();
             }
         });
-
         mNavigationView.getMenu().findItem(R.id.menu_item_night_mode)
-                .setActionView(mNightModeSwitchCompat);
+                .setActionView(nightModeSwitchCompat);
+
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -121,21 +121,8 @@ public class MainActivity extends BaseActivity {
                     case R.id.menu_item_about:
                         //
                         Dialog dialog = new Dialog(MainActivity.this);
-                        View view = new AboutPage(MainActivity.this)
-                                .addGitHub("https://github.com/aaron-chan")
-                                .addEmail("xiaochenginscnu@foxmail.com")
-                                .setDescription("来点干货 使用干货集中营(gank.io)提供的api，采用MVP模式实现模块化编程，减少代码耦合，UI上尽可能做到遵循Google的MaterialDesign风格。\n" +
-                                        "    主要框架：\n" +
-                                        "                RxJava,\n" +
-                                        "                Glide,\n" +
-                                        "                Retrofit,\n" +
-                                        "                ButterKnife，\n" +
-                                        "                gson。\n" +
-                                        "    如果有任何问题，请到 https://github.com/aaron-chan/gank/issues 提出。\n" +
-                                        "                感谢代码家")
-                                .addWebsite("https://aaron-chan.github.io")
-                                .setImage(R.mipmap.img_navigation_header)
-                                .create();
+                        dialog.setTitle("关于");
+                        View view = getLayoutInflater().inflate(R.layout.dialog_about_app, null);
                         dialog.setContentView(view);
                         dialog.show();
                         break;
@@ -145,9 +132,11 @@ public class MainActivity extends BaseActivity {
                 return true;
             }
         });
+        // 设置 抽屉视图
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.app_name, R.string.app_name);
         mDrawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+
         mBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -168,6 +157,14 @@ public class MainActivity extends BaseActivity {
             }
 
         });
+        // 设置底部item被选状态
+        if (mCurrentFragment instanceof DailyFragment) {
+            mBottomNavigation.getMenu().findItem(R.id.menu_item_home).setChecked(true);
+        } else if (mCurrentFragment instanceof CategoryFragment) {
+            mBottomNavigation.getMenu().findItem(R.id.menu_item_category).setChecked(true);
+        } else if (mCurrentFragment instanceof GirlsFragment) {
+            mBottomNavigation.getMenu().findItem(R.id.menu_item_girl).setChecked(true);
+        }
     }
 
     @Override
