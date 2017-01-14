@@ -14,9 +14,10 @@
         android:id="@+id/progressBar"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
-        android:background="?colorPrimary"
+
+        android:progressDrawable="@drawable/layerlist_webview_progress"
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="2dp"
         android:max="100"
         android:progress="0"
         />
