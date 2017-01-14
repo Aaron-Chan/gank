@@ -2,6 +2,7 @@ package com.aaron.library;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.v7.app.AppCompatDelegate;
 
 import com.aaron.library.utils.ToastUtils;
 import com.squareup.leakcanary.LeakCanary;
@@ -25,6 +26,7 @@ public class AaronApplication extends Application {
         initLeakCanary();
         // umeng 禁止默认的页面统计方式
         MobclickAgent.openActivityDurationTrack(false);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
     }
 

@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
+import android.support.annotation.StyleRes;
 import android.support.design.widget.Snackbar;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -37,18 +39,38 @@ public abstract class WebViewActivity extends BaseActivity {
 
     private static final String ARG_URL = "url";
     private static final String ARG_TITLE = "title";
+    private static final String ARG_THEME = "theme";
     private String mTitle;
     private String mUrl;
 
+
     public static void open(Context context, String url, String title, Class<? extends WebViewActivity> subClass) {
-        Intent intent = new Intent(context, subClass);
-        intent.putExtra(ARG_URL, url);
-        intent.putExtra(ARG_TITLE, title);
+        Intent intent = createIntent(context, url, title, subClass);
+        context.startActivity(intent);
+    }
+
+    public static void open(Context context, String url, String title,
+                            Class<? extends WebViewActivity> subClass, @StyleRes int theme) {
+        Intent intent = createIntent(context, url, title, subClass);
+        intent.putExtra(ARG_THEME, theme);
         context.startActivity(intent);
     }
 
     public static void open(Context context, String url, @StringRes int titleResId, Class<? extends WebViewActivity> subClass) {
         open(context, url, context.getString(titleResId), subClass);
+    }
+
+    public static void open(Context context, String url, @StringRes int titleResId,
+                            Class<? extends WebViewActivity> subClass, @StyleRes int theme) {
+        open(context, url, context.getString(titleResId), subClass, theme);
+    }
+
+    @NonNull
+    private static Intent createIntent(Context context, String url, String title, Class<? extends WebViewActivity> subClass) {
+        Intent intent = new Intent(context, subClass);
+        intent.putExtra(ARG_URL, url);
+        intent.putExtra(ARG_TITLE, title);
+        return intent;
     }
 
     @Override

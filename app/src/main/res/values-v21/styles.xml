@@ -1,8 +1,15 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="AppThemeBase">
-        <!-- Customize your theme here. -->
+
+    <style name="AppTheme" parent="DayTheme">
+        <item name="android:windowContentTransitions">true</item><!--支持共享控件-->
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
+        <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
+    </style>
+
+    <style name="NightTheme" parent="NightBaseTheme">
         <item name="android:windowContentTransitions">true</item><!--支持共享控件-->
         <item name="android:windowAllowEnterTransitionOverlap">true</item>
         <item name="android:windowAllowReturnTransitionOverlap">true</item>

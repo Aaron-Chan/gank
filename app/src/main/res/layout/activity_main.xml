@@ -24,17 +24,15 @@
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/bottom_navigation"
-            app:layout_behavior="@string/bye_burger_bottom_behavior"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_gravity="bottom"
-            android:background="@android:color/white"
+            android:background="?bottomNavigationBackground"
+            app:itemIconTint="?bottomNavigationItem"
+            app:itemTextColor="?bottomNavigationItem"
+            app:layout_behavior="@string/bye_burger_bottom_behavior"
             app:menu="@menu/menu_bottom_navigation"
             />
-        <!--app:itemIconTint="@color/bottom_item_color"-->
-        <!--app:itemTextColor="@color/bottom_item_color"-->
-        <!--app:layout_behavior="@string/bye_burger_bottom_behavior"-->
-        <!---->
 
     </android.support.design.widget.CoordinatorLayout>
 
@@ -46,6 +44,8 @@
         android:layout_gravity="start"
         android:background="?attr/contentItemBackground"
         app:headerLayout="@layout/navigation_header"
+        app:itemIconTint="?attr/colorAccent"
+        app:itemTextColor="?attr/contentItemTextColor"
         app:menu="@menu/menu_main_navigation"/>
 
 

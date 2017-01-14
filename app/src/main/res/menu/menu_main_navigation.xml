@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_item_about"
-
-        android:title="@string/navigation_about"/>
-    <item
         android:id="@+id/menu_item_night_mode"
-        android:checkable="true"
+        android:icon="@drawable/ic_night_mode"
         android:title="@string/navigation_night_mode"
         />
+    <item
+        android:id="@+id/menu_item_about"
+        android:icon="@drawable/ic_about"
+        android:title="@string/navigation_about"/>
 </menu>

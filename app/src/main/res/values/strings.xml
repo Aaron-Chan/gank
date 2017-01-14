@@ -9,5 +9,7 @@
     <string name="navigation_about">关于</string>
     <string name="navigation_night_mode">夜间模式</string>
 
+    <string name="menu_item_display_mode">显示模式</string>
+
 
 </resources>

@@ -1,27 +1,33 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppThemeBase" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="DayTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="contentItemBackground">@android:color/white</item>
         <item name="contentItemTextColor">@android:color/black</item>
-
-
+        <item name="android:actionMenuTextColor">@android:color/white</item>
+        <item name="bottomNavigationBackground">@android:color/white</item>
+        <item name="bottomNavigationItem">@color/bottom_navigation_color</item>
     </style>
 
-    <style name="AppTheme" parent="AppThemeBase">
+    <style name="AppTheme" parent="DayTheme">
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="NightTheme" parent="AppThemeBase">
+    <style name="NightBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/night_colorPrimary</item>
         <item name="colorPrimaryDark">@color/night_colorPrimaryDark</item>
         <item name="colorAccent">@color/night_colorAccent</item>
-        <item name="contentItemBackground">@color/night_clockBackground</item>
-        <item name="contentItemTextColor">@color/night_clockTextColor</item>
+        <item name="contentItemBackground">@color/night_contentItemBackground</item>
+        <item name="contentItemTextColor">@color/night_contentItemBacTextColor</item>
+        <item name="android:actionMenuTextColor">@android:color/white</item>
+        <item name="bottomNavigationBackground">?colorPrimary</item>
+        <item name="bottomNavigationItem">@color/bottom_navigation_color_night</item>
+    </style>
 
+    <style name="NightTheme" parent="NightBaseTheme">
     </style>
 
 </resources>

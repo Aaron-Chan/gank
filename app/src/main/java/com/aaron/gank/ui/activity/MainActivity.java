@@ -1,6 +1,7 @@
 package com.aaron.gank.ui.activity;
 
 import android.app.Dialog;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -8,11 +9,15 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.SwitchCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 
 import com.aaron.gank.R;
@@ -45,6 +50,7 @@ public class MainActivity extends BaseActivity {
     private Fragment mCurrentFragment;
     private Map<String, Fragment> mFragmentMap = new HashMap<>();
     private boolean mIsGirlShown;
+    private SwitchCompat mNightModeSwitchCompat;
 
 
     @Override
@@ -78,6 +84,7 @@ public class MainActivity extends BaseActivity {
     private void changeTheme() {
         boolean nightMode = SharePrefUtils.getBoolean(MainActivity.this, Constants.SP_KEY_NIGHT_MODE, false);
         setTheme(nightMode ? R.style.NightTheme : R.style.AppTheme);
+        getApplication().setTheme(nightMode ? R.style.NightTheme : R.style.AppTheme);
     }
 
     @Override
@@ -93,14 +100,22 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
+        mNightModeSwitchCompat = new SwitchCompat(this);
         boolean nightMode = SharePrefUtils.getBoolean(MainActivity.this, Constants.SP_KEY_NIGHT_MODE, false);
-        mNavigationView.getMenu().findItem(R.id.menu_item_night_mode).setChecked(nightMode);
+        mNightModeSwitchCompat.setChecked(nightMode);
+        mNightModeSwitchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharePrefUtils.putBoolean(MainActivity.this, Constants.SP_KEY_NIGHT_MODE, isChecked);
+                recreate();
+            }
+        });
+
+        mNavigationView.getMenu().findItem(R.id.menu_item_night_mode)
+                .setActionView(mNightModeSwitchCompat);
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                //toggle check state
-                boolean checked = !item.isChecked();
-                item.setChecked(checked);
                 //close drawer
                 mDrawerLayout.closeDrawers();
                 switch (item.getItemId()) {
@@ -126,12 +141,6 @@ public class MainActivity extends BaseActivity {
                         dialog.show();
                         break;
                     case R.id.menu_item_night_mode:
-                        //
-//                        boolean nightMode = SharePrefUtils.getBoolean(MainActivity.this, Constants.SP_KEY_NIGHT_MODE, false);
-//                        SharePrefUtils.putBoolean(MainActivity.this, Constants.SP_KEY_NIGHT_MODE, !nightMode);
-//                        item.setChecked(!nightMode);
-//                        recreate();
-
                         break;
                 }
                 return true;
@@ -165,26 +174,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected boolean hasFragment() {
         return true;
-    }
-
-    private void toggleNightMode(@NonNull MenuItem item) {
-//        int mode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-//
-//        if(mode == Configuration.UI_MODE_NIGHT_YES) {
-//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-//        } else if(mode == Configuration.UI_MODE_NIGHT_NO) {
-//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-//        } else {
-//            // blah blah
-//        }
-//
-//        recreate();
-
-        if (item.isChecked()) {
-            setTheme(R.style.NightTheme);
-        } else {
-            setTheme(R.style.AppTheme);
-        }
     }
 
     private void switchFragment(Class<?> fragmentClass) {
@@ -236,6 +225,12 @@ public class MainActivity extends BaseActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem menuItem = menu.findItem(R.id.menu_item_display_mode);
         menuItem.setVisible(mIsGirlShown);
+        Drawable drawable = menuItem.getIcon();
+        if (drawable != null) {
+            drawable = DrawableCompat.wrap(drawable);
+            DrawableCompat.setTint(drawable, ContextCompat.getColor(this, android.R.color.white));
+            menuItem.setIcon(drawable);
+        }
         return true;
     }
 

@@ -5,6 +5,6 @@
         android:id="@+id/menu_item_display_mode"
         app:showAsAction="ifRoom"
         android:showAsAction="ifRoom"
-        android:title="显示模式"
+        android:title="@string/menu_item_display_mode"
         android:icon="@drawable/ic_view_list_black_24dp"/>
 </menu>
