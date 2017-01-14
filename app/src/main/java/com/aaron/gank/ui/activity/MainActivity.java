@@ -84,7 +84,6 @@ public class MainActivity extends BaseActivity {
     private void changeTheme() {
         boolean nightMode = SharePrefUtils.getBoolean(MainActivity.this, Constants.SP_KEY_NIGHT_MODE, false);
         setTheme(nightMode ? R.style.NightTheme : R.style.AppTheme);
-        getApplication().setTheme(nightMode ? R.style.NightTheme : R.style.AppTheme);
     }
 
     @Override

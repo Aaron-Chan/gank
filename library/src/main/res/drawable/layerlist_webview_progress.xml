@@ -10,7 +10,7 @@
     <item android:id="@android:id/progress">
         <clip>
             <shape>
-                <corners android:radius="5dp"/>
+                <corners android:radius="2dp"/>
                 <gradient
                     android:endColor="?attr/colorPrimary"
                     android:startColor="?attr/colorPrimary"/>

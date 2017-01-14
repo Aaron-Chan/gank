@@ -44,6 +44,7 @@ public class StatusViewLayout extends FrameLayout {
         mLoadingView = LayoutInflater.from(getContext()).inflate(R.layout.status_view_loading, null);
         mErrorView = LayoutInflater.from(getContext()).inflate(R.layout.status_view_error, null);
         mEmptyView = LayoutInflater.from(getContext()).inflate(R.layout.status_view_empty, null);
+
         mErrorMsgView = (TextView) mErrorView.findViewById(R.id.tv_status_error_msg);
         mEmptyMsgView = (TextView) mEmptyView.findViewById(R.id.tv_status_empty_msg);
 
