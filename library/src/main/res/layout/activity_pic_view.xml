@@ -13,11 +13,20 @@
         android:id="@+id/app_bar_layout"
         layout="@layout/common_toolbar"/>
 
-    <uk.co.senab.photoview.PhotoView
+    <ImageView
+        android:id="@+id/iv_common_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@id/app_bar_layout"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        />
+
+    <uk.co.senab.photoview.PhotoView
         android:id="@+id/photoView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/app_bar_layout"
         android:layout_centerInParent="true"
         />
 

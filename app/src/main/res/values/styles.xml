@@ -24,8 +24,9 @@
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
 
-        <item name="android:windowBackground">@color/night_contentItemBackground</item>
-        <item name="android:textColorPrimary">@color/night_contentItemBacTextColor</item>
+        <item name="android:windowBackground">@color/night_windowBackground</item>
+        <item name="android:textColorPrimary">@color/night_primaryTextColor</item>
+        <item name="android:textColorSecondary">@color/night_secondary_text</item>
         <item name="android:actionMenuTextColor">@android:color/white</item>
         <item name="android:colorBackground">@color/md_grey_800</item>
         <item name="bottomNavigationBackground">?colorPrimary</item>
@@ -35,8 +36,9 @@
     <style name="NightTheme" parent="NightBaseTheme">
     </style>
 
-    <style name="uiouio" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:textColorPrimary">@color/abc_btn_colored_borderless_text_material</item>
+    <style name="WhoTextAppearance">
+        <item name="android:textColor">?android:textColorSecondary</item>
     </style>
+
 
 </resources>

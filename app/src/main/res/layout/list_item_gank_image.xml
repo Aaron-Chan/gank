@@ -33,6 +33,7 @@
             android:id="@+id/tv_sub_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="?android:textColorSecondary"
             android:textSize="14sp"/>
 
     </LinearLayout>

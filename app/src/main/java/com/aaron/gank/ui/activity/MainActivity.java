@@ -25,6 +25,7 @@ import com.aaron.gank.constans.Constants;
 import com.aaron.gank.ui.fragment.CategoryFragment;
 import com.aaron.gank.ui.fragment.DailyFragment;
 import com.aaron.gank.ui.fragment.GirlsFragment;
+import com.aaron.gank.utils.ThemeUtils;
 import com.aaron.library.activity.BaseActivity;
 import com.aaron.library.utils.SharePrefUtils;
 
@@ -59,7 +60,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        changeTheme();
         mFragmentManager = getSupportFragmentManager();
 
         mCurrentFragment = mFragmentManager.findFragmentById(R.id.fl_content);
@@ -210,6 +210,11 @@ public class MainActivity extends BaseActivity {
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    protected int getCurrentThemeId() {
+        return ThemeUtils.getCurrentTheme();
     }
 
     @Override

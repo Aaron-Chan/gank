@@ -11,6 +11,7 @@ import com.aaron.gank.R;
 import com.aaron.gank.data.entity.GankEntity;
 import com.aaron.gank.ui.activity.GankDetailActivity;
 import com.aaron.gank.utils.GlideUtilsWrapper;
+import com.aaron.gank.utils.ThemeUtils;
 import com.aaron.library.activity.PicViewActivity;
 import com.aaron.library.adapter.VH;
 import com.aaron.library.utils.DateUtils;
@@ -43,7 +44,8 @@ public class GankImageEntityProvider extends ItemViewProvider<GankEntity, VH> {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PicViewActivity.openNotZoom(v.getContext(), imageUrl, gankImageEntity.getDesc(), v);
+                PicViewActivity.openNotZoomTheme(v.getContext(), imageUrl, gankImageEntity.getDesc(),
+                        v, ThemeUtils.getCurrentTheme());
             }
         });
         holder.itemView.setOnClickListener(new View.OnClickListener() {

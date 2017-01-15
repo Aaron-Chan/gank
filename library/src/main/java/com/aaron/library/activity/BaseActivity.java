@@ -19,15 +19,17 @@ import butterknife.ButterKnife;
  */
 
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView {
-
+    protected static final int DEFAULT_INVALID_THEME_ID = -1;
     protected P mPresenter;
-
     protected Toolbar mToolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init(savedInstanceState);
+        if (getCurrentThemeId() != DEFAULT_INVALID_THEME_ID) {
+            setTheme(getCurrentThemeId());
+        }
         setContentView(getLayoutId());
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         ButterKnife.bind(this);
@@ -59,7 +61,10 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
 
+    protected int getCurrentThemeId() {
+        return DEFAULT_INVALID_THEME_ID;
     }
 
     protected abstract void init(Bundle savedInstanceState);
