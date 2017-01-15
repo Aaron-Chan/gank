@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
 /**
- * 参考
+ * 参考 _SOLID
  * #https://github.com/burgessjp/GanHuoIO/tree/master/library/src/main/java/ren/solid/library/adapter/LoadMoreScrollListener
  */
 public abstract class LoadMoreScrollListener extends RecyclerView.OnScrollListener {
@@ -45,8 +45,6 @@ public abstract class LoadMoreScrollListener extends RecyclerView.OnScrollListen
             } else if (mTotalItemCount < mPreviousTotal) {//用户刷新结束
                 mPreviousTotal = mTotalItemCount;
                 mIsLoading = false;
-            } else {
-                //有可能是在第一页刷新也可能是加载完毕
             }
 
         }

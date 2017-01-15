@@ -23,6 +23,6 @@
         android:layout_below="@id/iv_header_icon"
         android:layout_marginTop="8dp"
         android:text="@string/app_name"
-        android:textSize="22sp"/>
+        android:textSize="20sp"/>
 
 </RelativeLayout>
