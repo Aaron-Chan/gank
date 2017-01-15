@@ -34,7 +34,7 @@ public class GlideUtils {
         Glide.with(view.getContext())
                 .load(url)
                 .override(width, height)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .dontAnimate()
                 .into(view)
                 .getSize(new SizeReadyCallback() {
@@ -52,7 +52,7 @@ public class GlideUtils {
 
         Glide.with(view.getContext())
                 .load(url)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .placeholder(defaultImage)
                 .dontAnimate()
                 .into(view)
