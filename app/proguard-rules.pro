@@ -120,7 +120,9 @@
 
 
 # ------第三方------
-
+# bmob
+-keep class cn.bmob.** { *;}
+-dontwarn cn.bmob.**
 # ---umeng---
 
 -keepclassmembers class * {

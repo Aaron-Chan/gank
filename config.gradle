@@ -3,7 +3,7 @@ ext {
     android = [compileSdkVersion: 25,
                buildToolsVersion: "25.0.2",
                applicationId    : "com.aaron.gank",
-               minSdkVersion    : 11,
+               minSdkVersion    : 14,
                targetSdkVersion : 25,
                versionCode      : 1,
                versionName      : "1.0"]
@@ -22,7 +22,7 @@ ext {
                     "rxjava"              : "io.reactivex:rxjava:1.1.6",
                     "rxjavaProguard"              : "com.artemzin.rxjava:proguard-rules:1.1.6.0'",
                     "butterknife"         : "com.jakewharton:butterknife:8.4.0",
-                    "gson"                : "com.google.code.gson:gson:2.4",
+                    "gson"                : "com.google.code.gson:gson:2.6.2",
                     "logger"              : "com.orhanobut:logger:1.15",
                     "multitype"           : "me.drakeet.multitype:multitype:2.3.0",
                     "photoView"           : "com.github.chrisbanes:PhotoView:1.2.6",

@@ -54,6 +54,10 @@ android {
         abortOnError false
     }
 
+    sourceSets {
+        main.jniLibs.srcDirs = ['libs']
+    }
+
     productFlavors {
 //        xiaomi {
 //            manifestPlaceholders = [ChannelValue: "xiaomi"]
@@ -125,9 +129,9 @@ dependencies {
     testCompile rootProject.ext.dependencies["leakcanaryTest"]
 
     // umeng related dependencies
-    compile 'com.squareup.okio:okio:1.6.0'
+    compile 'com.squareup.okio:okio:1.7.0'
     compile 'com.squareup.wire:wire-runtime:2.1.2'
-   
+
 
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
