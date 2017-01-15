@@ -23,6 +23,8 @@
 <img src="sreenCapture/gank_detail_night.png" width="25%" />
 <img src="sreenCapture/girl_detail_night.png" width="25%" />
 
+### TODO
+* 自动更新
 
 ###第三方库
 * [rxjava](https://github.com/ReactiveX/RxJava)
@@ -46,7 +48,8 @@
 * [代码家](https://github.com/daimajia)
 
 ### License
-/*
+
+    /*
      *       
      * Copyright (C) 2017 AaronChan <aaronchan.me@gmail.com>
      *
@@ -63,3 +66,4 @@
      * You should have received a copy of the GNU General Public License
      * along with Meizhi.  If not, see <http://www.gnu.org/licenses/>.
      */
+
