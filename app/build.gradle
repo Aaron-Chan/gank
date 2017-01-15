@@ -16,14 +16,8 @@ android {
     }
 
     signingConfigs {
-        //指定名叫release的一个签名对象 会在下面的脚本(85行开始)中，动态根据配置文件设置属性
+        //指定名叫release的一个签名对象 会在下面的脚本中，动态根据配置文件设置属性
         release
-//        release {
-//            storeFile file("WuXiaolong.jks")
-//            storePassword 'android'
-//            keyAlias 'android'
-//            keyPassword 'android'
-//        }
     }
 
     buildTypes {
@@ -53,26 +47,32 @@ android {
             }
         }
     }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release bu
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
 
     productFlavors {
-        xiaomi {
-            manifestPlaceholders = [ChannelValue: "xiaomi"]
-        }
-        yingyongbao {
-            manifestPlaceholders = [ChannelValue: "yingyongbao"]
-        }
-        m360 {
-            manifestPlaceholders = [ChannelValue: "m360"]
-        }
-        wandoujia {
-            manifestPlaceholders = [ChannelValue: "wandoujia"]
-        }
+//        xiaomi {
+//            manifestPlaceholders = [ChannelValue: "xiaomi"]
+//        }
+//        yingyongbao {
+//            manifestPlaceholders = [ChannelValue: "yingyongbao"]
+//        }
+//        m360 {
+//            manifestPlaceholders = [ChannelValue: "m360"]
+//        }
+//        wandoujia {
+//            manifestPlaceholders = [ChannelValue: "wandoujia"]
+//        }
         fir {
             manifestPlaceholders = [ChannelValue: "fir"]
         }
-        play {
-            manifestPlaceholders = [ChannelValue: "play"]
-        }
+//        play {
+//            manifestPlaceholders = [ChannelValue: "play"]
+//        }
     }
 }
 
@@ -112,25 +112,12 @@ dependencies {
         exclude group: 'com.squareup.leakcanary' // 避免 duplicate entry
     }
 
-    //butterknife
-    compile rootProject.ext.dependencies["butterknife"]
 
-    //retrofit
-    compile rootProject.ext.dependencies["retrofit"]
-    compile rootProject.ext.dependencies["retrofit-covert-gson"]
-    compile rootProject.ext.dependencies["retrofit-rxjava"]
 
-    //gson
-    compile rootProject.ext.dependencies["gson"]
 
     //兼容包
-    // compile rootProject.ext.dependencies["appcompat-v7"]
     compile rootProject.ext.dependencies["support-v4"]
-    // compile rootProject.ext.dependencies["design"]
     compile rootProject.ext.dependencies["cardview"]
-
-    // google扩展库
-    compile rootProject.ext.dependencies["guava"]
 
     // 内存泄漏检查
     debugCompile rootProject.ext.dependencies["leakcanaryDebug"]
@@ -140,6 +127,7 @@ dependencies {
     // umeng related dependencies
     compile 'com.squareup.okio:okio:1.6.0'
     compile 'com.squareup.wire:wire-runtime:2.1.2'
+   
 
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'

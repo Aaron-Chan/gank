@@ -27,7 +27,10 @@ public class AaronApplication extends Application {
         // umeng 禁止默认的页面统计方式
         MobclickAgent.openActivityDurationTrack(false);
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+        if (BuildConfig.DEBUG) {
+        } else {
 
+        }
     }
 
     private void initLeakCanary() {

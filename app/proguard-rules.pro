@@ -29,6 +29,7 @@
 -keepattributes SourceFile,LineNumberTable # 抛出异常时保留代码行号
 -keepattributes *Annotation* # 保护注解
 -keepattributes Exceptions
+-keepattributes InnerClasses
 -dontwarn
 -keepparameternames
 
@@ -85,6 +86,14 @@
     java.lang.Object writeReplace();
     java.lang.Object readResolve();
 }
+# duplicate definition
+-keep class org.apache.http.** { *; }
+-dontwarn org.apache.http.**
+-dontwarn android.net.**
+-dontnote android.net.http.*
+-dontnote org.apache.commons.codec.**
+-dontnote org.apache.http.**
+
 
 # ---design---
 -dontwarn android.support.design.**
@@ -103,21 +112,35 @@
     public <init>(android.content.Context);
 }
 
+# ---support-v4---
+-keep class android.support.v4.** { *; }
+-dontnote android.support.v4.**
+
 
 
 
 # ------第三方------
 
 # ---umeng---
+
 -keepclassmembers class * {
    public <init>(org.json.JSONObject);
+}
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
 }
 
 -keep public class com.aaron.gank.R$*{
     public static final int *;
 }
 -keep public class com.umeng.fb.ui.ThreadView {
+    *;
 }
+
+# 没有依赖的时候不要note
+-dontnote com.umeng.fb.ui.ThreadView
+
 -dontwarn okio.**
 -dontwarn com.squareup.wire.**
 -keep class okio.** {*;}
@@ -125,6 +148,12 @@
 -keep public class * extends com.umeng.**
 -keep class com.umeng.** { *; }
 
+-dontwarn com.umeng.**
+
+-dontwarn com.ta.**
+-dontwarn u.upd.**
+-dontwarn u.aly.**
+-keep class com.umeng.update.** { *; }
 
 # ---glide---
 -keep public class * implements com.bumptech.glide.module.GlideModule
@@ -138,7 +167,11 @@
 -keep class com.squareup.okhttp.** { *;}
 -keep interface com.squareup.okhttp.** { *; }
 -dontwarn okio.**
+-dontnote okhttp3.**, okio.**, retrofit2.**, pl.droidsonroids.**
 
+# ---photoview---
+-dontwarn uk.co.senab.photoview.**
+-keep class uk.co.senab.photoview.** { *;}
 
 # ---gson---
 # removes such information by default, so configure it to keep all of it.
@@ -146,15 +179,33 @@
 # For using GSON @Expose annotation
 -keepattributes *Annotation*
 -keepattributes EnclosingMethod
+
 # Gson specific classes
 -keep class sun.misc.Unsafe { *; }
 -keep class com.google.gson.stream.** { *; }
-
+# 用到gson的类
+-keep class com.aaron.gank.data.** { *; }
 
 # ---RxJava---
 -dontwarn org.mockito.**
 -dontwarn org.junit.**
 -dontwarn org.robolectric.**
+-dontwarn sun.misc.**
+
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+   long producerIndex;
+   long consumerIndex;
+}
+
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
+
+-dontnote rx.internal.util.PlatformDependent
 
 # ---retrofit---
 -dontwarn retrofit2.**
@@ -190,11 +241,15 @@
 -dontwarn javax.annotation.**
 -dontwarn javax.inject.**
 -dontwarn sun.misc.Unsafe
+# 没有依赖的时候不要note
+-dontnote sun.misc.Unsafe
 # Guava 19.0
 -dontwarn java.lang.ClassValue
 -dontwarn com.google.j2objc.annotations.Weak
--dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+# 没有依赖的时候不要note
+-dontnote com.google.common.**
 #----butterknife---
 # Retain generated class which implement Unbinder.
 -keep public class * implements butterknife.Unbinder { public <init>(...); }

@@ -28,6 +28,7 @@ import com.aaron.gank.ui.fragment.GirlsFragment;
 import com.aaron.gank.utils.ThemeUtils;
 import com.aaron.library.activity.BaseActivity;
 import com.aaron.library.utils.SharePrefUtils;
+import com.umeng.update.UmengUpdateAgent;
 
 import java.util.HashMap;
 import java.util.List;
@@ -55,7 +56,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //  UmengUpdateAgent.update(this);
+         UmengUpdateAgent.update(this);
     }
 
     @Override

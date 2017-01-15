@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import com.aaron.library.R;
 import com.aaron.library.presenter.BasePresenter;
 import com.aaron.library.view.BaseView;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.ButterKnife;
 
@@ -42,20 +43,20 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected void onResume() {
         super.onResume();
         // umeng 统计
-//        if (!hasFragment()) {
-//            MobclickAgent.onPageStart(getPageNameForAnalysis());
-//        }
-//        MobclickAgent.onResume(this);
+        if (!hasFragment()) {
+            MobclickAgent.onPageStart(getPageNameForAnalysis());
+        }
+        MobclickAgent.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         // umeng 统计
-//        if (!hasFragment()) {
-//            MobclickAgent.onPageEnd(getPageNameForAnalysis());
-//        }
-//        MobclickAgent.onPause(this);
+        if (!hasFragment()) {
+            MobclickAgent.onPageEnd(getPageNameForAnalysis());
+        }
+        MobclickAgent.onPause(this);
     }
 
     @Override

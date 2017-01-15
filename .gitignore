@@ -42,3 +42,5 @@ build/
 .DS_Store
 
 *.keystore
+/sreenCapture/about_night.png
+/sreenCapture/about.png
