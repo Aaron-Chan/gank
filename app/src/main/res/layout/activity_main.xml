@@ -42,10 +42,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="?attr/contentItemBackground"
+        android:background="?android:windowBackground"
         app:headerLayout="@layout/navigation_header"
         app:itemIconTint="?attr/colorAccent"
-        app:itemTextColor="?attr/contentItemTextColor"
+        app:itemTextColor="?android:textColorPrimary"
         app:menu="@menu/menu_main_navigation"/>
 
 

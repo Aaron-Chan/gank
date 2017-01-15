@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="contentItemBackground" format="color"/>
-    <attr name="contentItemTextColor" format="color"/>
+    <!--<attr name="contentItemBackground" format="color"/>-->
+    <!--<attr name="contentItemTextColor" format="color"/>-->
     <attr name="bottomNavigationItem" format="color"/>
     <attr name="bottomNavigationBackground" format="color"/>
 </resources>

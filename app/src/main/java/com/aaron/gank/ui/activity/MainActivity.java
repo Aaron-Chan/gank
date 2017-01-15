@@ -119,7 +119,7 @@ public class MainActivity extends BaseActivity {
                 mDrawerLayout.closeDrawers();
                 switch (item.getItemId()) {
                     case R.id.menu_item_about:
-                        //
+                        // 显示关于页面
                         Dialog dialog = new Dialog(MainActivity.this);
                         dialog.setTitle("关于");
                         View view = getLayoutInflater().inflate(R.layout.dialog_about_app, null);

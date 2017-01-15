@@ -16,13 +16,5 @@
 
     </style>
 
-    <style name="content_item_background">
-        <item name="android:background">?attr/contentItemBackground</item>
-    </style>
-
-    <style name="content_item_text">
-        <item name="android:textColor">?attr/contentItemTextColor</item>
-        <item name="android:background">?attr/contentItemBackground</item>
-    </style>
 
 </resources>

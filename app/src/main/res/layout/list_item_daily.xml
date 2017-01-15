@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="48dp"
-    style="@style/content_item_text"
     android:ellipsize="end"
     android:gravity="center_vertical"
     android:maxLines="2"
