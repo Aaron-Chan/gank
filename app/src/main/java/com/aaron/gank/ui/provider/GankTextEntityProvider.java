@@ -5,10 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.aaron.gank.App;
 import com.aaron.gank.R;
 import com.aaron.gank.data.entity.GankEntity;
 import com.aaron.gank.ui.activity.GankDetailActivity;
 import com.aaron.library.adapter.VH;
+import com.aaron.library.utils.DateUtils;
 
 import me.drakeet.multitype.ItemViewProvider;
 
@@ -28,7 +30,9 @@ public class GankTextEntityProvider extends ItemViewProvider<GankEntity, VH> {
     @Override
     protected void onBindViewHolder(@NonNull VH holder, @NonNull final GankEntity gankEntity) {
         holder.setText(R.id.tv_title, gankEntity.getDesc());
-        holder.setText(R.id.tv_sub_title, gankEntity.getWho());
+        holder.setText(R.id.tv_sub_title, String.format(App.sContext.getString(R.string.gank_subtitle_format),
+                gankEntity.getWho(), DateUtils.getFriendlyTimeSpanByNow(gankEntity.getPublishedAt().getTime())
+        ));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
