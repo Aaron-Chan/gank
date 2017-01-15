@@ -59,24 +59,24 @@ android {
     }
 
     productFlavors {
-//        xiaomi {
-//            manifestPlaceholders = [ChannelValue: "xiaomi"]
-//        }
-//        yingyongbao {
-//            manifestPlaceholders = [ChannelValue: "yingyongbao"]
-//        }
-//        m360 {
-//            manifestPlaceholders = [ChannelValue: "m360"]
-//        }
-//        wandoujia {
-//            manifestPlaceholders = [ChannelValue: "wandoujia"]
-//        }
+        xiaomi {
+            manifestPlaceholders = [ChannelValue: "xiaomi"]
+        }
+        yingyongbao {
+            manifestPlaceholders = [ChannelValue: "yingyongbao"]
+        }
+        m360 {
+            manifestPlaceholders = [ChannelValue: "m360"]
+        }
+        wandoujia {
+            manifestPlaceholders = [ChannelValue: "wandoujia"]
+        }
         fir {
             manifestPlaceholders = [ChannelValue: "fir"]
         }
-//        play {
-//            manifestPlaceholders = [ChannelValue: "play"]
-//        }
+        play {
+            manifestPlaceholders = [ChannelValue: "play"]
+        }
     }
 }
 

@@ -2,6 +2,7 @@
 &nbsp;&nbsp;来点干货提供包括Android,IOS,前端在内技术干货，学习之余可以看看妹子图片和休闲视频。
 
 &nbsp;&nbsp;使用[干货集中营](gank.io)提供的api，采用MVP模式实现模块化编程，减少代码耦合，UI上尽可能遵循Google的MaterialDesign风格，为了方便阅读，还提供了夜间模式。
+
 ![icon](/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png "")
 
 ###应用截图
