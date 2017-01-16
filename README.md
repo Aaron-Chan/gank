@@ -25,7 +25,11 @@
 <img src="sreenCapture/girl_detail_night.png" width="25%" />
 
 ### 下载
-* [fir.im](https:fir.im/66gank)
+* 
+![icon](/sreenCapture/fir_im.png)
+[fir.im](https:fir.im/66gank)
+
+
 
 ### TODO
 * 自动更新
